@@ -8,6 +8,13 @@
   justify-items: center;
   grid-template: 75px 1fr 50px / 1fr;
   padding: 30px;
-  background-color: ghostwhite;
+  // background-color: ghostwhite;
   position: relative;
+}
+
+.Footer {
+  grid-area: 3 / 1 / 4 / 2;
+  height: 100%;
+  margin-top: 10px;
+  z-index: 10;
 }
