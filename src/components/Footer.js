@@ -4,22 +4,22 @@ import gitHubIcon from "../assets/github.png";
 
 const Footer = () => {
   return (
-    <div
-      className="Footer"
-      css={css`
-        color: #202832;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        font-size: 12px;
-        padding: 3px;
-        border-radius: 7px;
-        width: 100%;
-      `}
-    >
-      <div className="made-by">
+    <div className="Footer">
+      <div
+        className="made-by"
+        css={css`
+          color: #202832;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          font-size: 12px;
+          padding: 3px;
+          border-radius: 7px;
+          width: 100%;
+        `}
+      >
         <p>Made by</p>
         <a
           href="https://github.com/dwgrossberg"
