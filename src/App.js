@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import ColorTabs from "./components/ColorTabs";
 import Footer from "./components/Footer";
-import Game from "./components/Game/Game";
+import Puzzle from "./components/Puzzle";
 import theme from "./components/theme";
 import Home from "./pages/Home";
 import TopScore from "./pages/TopScore";
@@ -18,12 +18,12 @@ import "./styles/App.scss";
 
 const App = () => {
   const [puzzles, setPuzzles] = useState([
-    waldo1,
-    waldo2,
-    waldo3,
-    waldo4,
-    waldo5,
-    waldo6,
+    { img: waldo1, id: "waldo1" },
+    { img: waldo2, id: "waldo2" },
+    { img: waldo3, id: "waldo3" },
+    { img: waldo4, id: "waldo4" },
+    { img: waldo5, id: "waldo5" },
+    { img: waldo6, id: "waldo6" },
   ]);
 
   return (
@@ -33,7 +33,7 @@ const App = () => {
           <ColorTabs />
           <Routes>
             <Route path="/" element={<Home puzzles={puzzles} />} />
-            <Route path="/game" element={<Game />} />
+            <Route path="/puzzles/:id" element={<Puzzle puzzles={puzzles} />} />
             <Route path="/top-scores" element={<TopScore />} />
           </Routes>
         </HashRouter>

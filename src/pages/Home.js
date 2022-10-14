@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
 import theme from "../components/theme";
 
 const Home = (props) => {
@@ -9,11 +10,12 @@ const Home = (props) => {
       className="Home"
       css={css`
         display: grid;
-        grid-template: 50px repeat(auto-fit, minmax(300px, 1fr)) / repeat(
+        grid-template: 50px repeat(auto-fit, minmax(250px, 1fr)) / repeat(
             auto-fit,
-            minmax(300px, 1fr)
+            minmax(250px, 1fr)
           );
         gap: 20px;
+        margin-bottom: 25px;
       `}
     >
       <p
@@ -25,23 +27,25 @@ const Home = (props) => {
         Choose a game board to get started!
       </p>
       {puzzles.map((item) => (
-        <img
-          key={item}
-          src={item}
-          alt={item.title}
-          loading="lazy"
-          css={css`
-            width: 100%;
-            place-self: center;
-            cursor: pointer;
-            border: 2px dotted ${theme.palette.primary.main};
-            outline: 4px solid ${theme.palette.secondary.main};
-            &:hover {
-              outline: 4px dotted ${theme.palette.primary.main};
-              border: 2px solid ${theme.palette.secondary.main};
-            }
-          `}
-        />
+        <Link to={"/puzzles/" + item.id} style={{ textDecoration: "none" }}>
+          <img
+            key={item.id}
+            src={item.img}
+            alt={item.id}
+            loading="lazy"
+            css={css`
+              width: 100%;
+              place-self: center;
+              cursor: pointer;
+              border: 2px dotted ${theme.palette.primary.main};
+              outline: 4px solid ${theme.palette.secondary.main};
+              &:hover {
+                outline: 4px dotted ${theme.palette.primary.main};
+                border: 2px solid ${theme.palette.secondary.main};
+              }
+            `}
+          />
+        </Link>
       ))}
     </div>
   );

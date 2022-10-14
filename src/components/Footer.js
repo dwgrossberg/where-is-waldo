@@ -18,7 +18,6 @@ const Footer = () => {
           padding: 3px;
           border-radius: 7px;
           width: 100%;
-          margin-top: 70px;
         `}
       >
         <p>Made by</p>
