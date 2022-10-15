@@ -38,6 +38,7 @@ const Home = (props) => {
             display: block;
             position: relative;
             padding-bottom: 5px;
+
             &:hover {
               border-bottom: 2px dotted ${theme.palette.primary.main};
               box-shadow: 0 8px 8px -4px lightgrey;
@@ -54,8 +55,12 @@ const Home = (props) => {
               justify-content: center;
               cursor: pointer;
               margin-bottom: 5px;
-              border: 2px dotted ${theme.palette.primary.main};
-              outline: 4px solid ${theme.palette.secondary.main};
+              border: 2px dotted white;
+              outline: 4px solid lightgrey;
+              &:hover {
+                border: 2px dotted ${theme.palette.primary.main};
+                outline: 4px solid ${theme.palette.secondary.main};
+              }
             `}
           />
           <div
@@ -63,21 +68,28 @@ const Home = (props) => {
               display: flex;
               align-items: center;
               justify-content: space-between;
+              padding: 3px 7px;
             `}
           >
             Level {item.level}
-            <div>
-              {item.characters.map((char) => {
-                let src;
-                switch (char) {
-                  case "waldo":
-                    src = "./assets/waldo.jpg";
-                    break;
-                  default:
-                    src = undefined;
-                    break;
-                }
-                return <img key={char} src={src}></img>;
+            <div
+              css={css`
+                display: flex;
+                gap: 5px;
+                align-items: center;
+              `}
+            >
+              {item.characters.map((item) => {
+                return (
+                  <img
+                    key={item.name}
+                    alt={item.id}
+                    src={item.img}
+                    css={css`
+                      height: 20px;
+                    `}
+                  ></img>
+                );
               })}
             </div>
           </div>

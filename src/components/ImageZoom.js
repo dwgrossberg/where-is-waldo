@@ -64,6 +64,8 @@ const ImageZoom = (props) => {
 
       <div
         style={{
+          borderRadius: "50%",
+
           display: showMagnifier ? "" : "none",
           position: "absolute",
           // prevent magnifier blocks the mousemove event of img

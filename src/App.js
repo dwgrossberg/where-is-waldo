@@ -13,6 +13,10 @@ import waldo3 from "./assets/waldo3.jpg";
 import waldo4 from "./assets/waldo4.jpg";
 import waldo5 from "./assets/waldo5.jpg";
 import waldo6 from "./assets/waldo6.jpg";
+import waldo from "./assets/waldo.jpg";
+import wizard from "./assets/wizard.jpg";
+import wendy from "./assets/wendy.jpg";
+import odlaw from "./assets/odlaw.jpg";
 
 import "./styles/App.scss";
 
@@ -22,37 +26,67 @@ const App = () => {
       img: waldo1,
       id: "waldo1",
       level: 1,
-      characters: ["waldo", "wizard", "wendy", "odlaw"],
+      characters: [
+        { name: "waldo", img: waldo },
+        { name: "wizard", img: wizard },
+        { name: "wendy", img: wendy },
+        { name: "odlaw", img: odlaw },
+      ],
     },
     {
       img: waldo2,
       id: "waldo2",
       level: 2,
-      characters: ["waldo", "wizard", "wendy", "odlaw"],
+      characters: [
+        { name: "waldo", img: waldo },
+        { name: "wizard", img: wizard },
+        { name: "wendy", img: wendy },
+        { name: "odlaw", img: odlaw },
+      ],
     },
     {
       img: waldo3,
       id: "waldo3",
       level: 3,
-      characters: ["waldo", "wizard", "wendy", "odlaw"],
+      characters: [
+        { name: "waldo", img: waldo },
+        { name: "wizard", img: wizard },
+        { name: "wendy", img: wendy },
+        { name: "odlaw", img: odlaw },
+      ],
     },
     {
       img: waldo4,
       id: "waldo4",
       level: 4,
-      characters: ["waldo", "wizard", "wendy", "odlaw"],
+      characters: [
+        { name: "waldo", img: waldo },
+        { name: "wizard", img: wizard },
+        { name: "wendy", img: wendy },
+        { name: "odlaw", img: odlaw },
+      ],
     },
     {
       img: waldo5,
       id: "waldo5",
       level: 5,
-      characters: ["waldo", "wizard", "wendy", "odlaw"],
+      characters: [
+        { name: "waldo", img: waldo },
+        { name: "wizard", img: wizard },
+        { name: "wendy", img: wendy },
+        { name: "odlaw", img: odlaw },
+      ],
     },
     {
       img: waldo6,
       id: "waldo6",
       level: 6,
-      characters: ["waldo", "wizard", "wendy", "odlaw"],
+      characters: [
+        { name: "waldo", img: waldo },
+        { name: "wizard", img: wizard },
+        { name: "wendy", img: wendy },
+        { name: "odlaw", img: odlaw },
+      ],
     },
   ]);
 
