@@ -33,8 +33,14 @@ const Home = (props) => {
           key={item.id}
           style={{ textDecoration: "none" }}
           css={css`
+            border-radius: 0 0 7px 7px;
+            border-bottom: 2px solid transparent;
+            display: block;
+            position: relative;
+            padding-bottom: 5px;
             &:hover {
-              box-shadow: 1px 1px ${theme.palette.secondary.main};
+              border-bottom: 2px dotted ${theme.palette.primary.main};
+              box-shadow: 0 8px 8px -4px lightgrey;
             }
           `}
         >
@@ -50,14 +56,31 @@ const Home = (props) => {
               margin-bottom: 5px;
               border: 2px dotted ${theme.palette.primary.main};
               outline: 4px solid ${theme.palette.secondary.main};
-              &:hover {
-                outline: 4px dotted ${theme.palette.primary.main};
-                border: 2px solid ${theme.palette.secondary.main};
-                box-shadow: 1px 1px ${theme.palette.secondary.main};
-              }
             `}
           />
-          <div>Level {item.level}</div>
+          <div
+            css={css`
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            `}
+          >
+            Level {item.level}
+            <div>
+              {item.characters.map((char) => {
+                let src;
+                switch (char) {
+                  case "waldo":
+                    src = "./assets/waldo.jpg";
+                    break;
+                  default:
+                    src = undefined;
+                    break;
+                }
+                return <img key={char} src={src}></img>;
+              })}
+            </div>
+          </div>
         </Link>
       ))}
     </div>
