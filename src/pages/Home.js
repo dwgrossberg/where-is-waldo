@@ -10,12 +10,13 @@ const Home = (props) => {
       className="Home"
       css={css`
         display: grid;
-        grid-template: 50px repeat(auto-fit, minmax(250px, 1fr)) / repeat(
+        grid-template: 50px repeat(auto-fit, minmax(200px, 1fr)) / repeat(
             auto-fit,
-            minmax(250px, 1fr)
+            minmax(300px, 1fr)
           );
         gap: 20px;
         margin-bottom: 25px;
+        align-items: center;
       `}
     >
       <p
@@ -36,6 +37,7 @@ const Home = (props) => {
             css={css`
               width: 100%;
               place-self: center;
+              justify-content: center;
               cursor: pointer;
               border: 2px dotted ${theme.palette.primary.main};
               outline: 4px solid ${theme.palette.secondary.main};

@@ -1,10 +1,25 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { useParams } from "react-router-dom";
+import ImageMagnifier from "./ImageMagnifier";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
-  return <img src={thisPuzzle.img} alt={thisPuzzle.id}></img>;
+  return (
+    <div
+      css={css`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      `}
+    >
+      <ImageMagnifier img={thisPuzzle.img} width={"100%"} height={"100%"} />
+    </div>
+  );
 };
 
 export default Puzzle;
