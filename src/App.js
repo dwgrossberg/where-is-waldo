@@ -18,12 +18,12 @@ import "./styles/App.scss";
 
 const App = () => {
   const [puzzles, setPuzzles] = useState([
-    { img: waldo1, id: "waldo1" },
-    { img: waldo2, id: "waldo2" },
-    { img: waldo3, id: "waldo3" },
-    { img: waldo4, id: "waldo4" },
-    { img: waldo5, id: "waldo5" },
-    { img: waldo6, id: "waldo6" },
+    { img: waldo1, id: "waldo1", level: 1 },
+    { img: waldo2, id: "waldo2", level: 2 },
+    { img: waldo3, id: "waldo3", level: 3 },
+    { img: waldo4, id: "waldo4", level: 4 },
+    { img: waldo5, id: "waldo5", level: 5 },
+    { img: waldo6, id: "waldo6", level: 6 },
   ]);
 
   return (

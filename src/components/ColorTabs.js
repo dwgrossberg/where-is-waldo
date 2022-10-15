@@ -1,8 +1,11 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { NavLink } from "react-router-dom";
+import theme from "./theme";
 
 export default function ColorTabs() {
   const [value, setValue] = React.useState("Home");
@@ -12,7 +15,14 @@ export default function ColorTabs() {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{ width: "100%" }}
+      css={css`
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      `}
+    >
       <Tabs
         value={value}
         onChange={handleChange}
@@ -28,6 +38,17 @@ export default function ColorTabs() {
           to={"/top-scores"}
         />
       </Tabs>
+      <h1
+        css={css`
+          color: ${theme.palette.primary.main};
+          text-align: right;
+          @media screen and (max-width: 550px) {
+            font-size: 22px;
+          }
+        `}
+      >
+        {"Where's Waldo"}
+      </h1>
     </Box>
   );
 }

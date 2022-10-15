@@ -1,15 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import theme from "./theme";
 
 const ImageZoom = (props) => {
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
+  const [[coordX, coordY], setCoordXY] = useState([0, 0]);
   const src = props.img;
   const width = props.width;
   const height = props.height;
   const magnifierHeight = 150;
   const magnifierWidth = 150;
   const zoomLevel = 3;
+
+  useEffect(() => {
+    console.log([coordX, coordY]);
+  }, [coordX, coordY]);
+
   return (
     <div
       style={{
@@ -42,6 +49,16 @@ const ImageZoom = (props) => {
           // close magnifier
           setShowMagnifier(false);
         }}
+        onMouseDown={(e) => {
+          // calculate cursor position on the page
+          const x = Math.round(
+            (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
+          );
+          const y = Math.round(
+            (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
+          );
+          setCoordXY([x, y]);
+        }}
         alt={"img"}
       />
 
@@ -49,7 +66,6 @@ const ImageZoom = (props) => {
         style={{
           display: showMagnifier ? "" : "none",
           position: "absolute",
-
           // prevent magnifier blocks the mousemove event of img
           pointerEvents: "none",
           // set size of magnifier
@@ -59,16 +75,14 @@ const ImageZoom = (props) => {
           top: `${y - magnifierHeight / 2}px`,
           left: `${x - magnifierWidth / 2}px`,
           opacity: "1", // reduce opacity so you can verify position
-          border: "1px solid lightgray",
+          border: `3px solid ${theme.palette.secondary.main}`,
           backgroundColor: "white",
           backgroundImage: `url('${src}')`,
           backgroundRepeat: "no-repeat",
-
           //calculate zoomed image size
           backgroundSize: `${imgWidth * zoomLevel}px ${
             imgHeight * zoomLevel
           }px`,
-
           //calculate position of zoomed image.
           backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
           backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,

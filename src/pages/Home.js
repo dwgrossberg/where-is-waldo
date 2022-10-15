@@ -28,9 +28,17 @@ const Home = (props) => {
         Choose a game board to get started!
       </p>
       {puzzles.map((item) => (
-        <Link to={"/puzzles/" + item.id} style={{ textDecoration: "none" }}>
+        <Link
+          to={"/puzzles/" + item.id}
+          key={item.id}
+          style={{ textDecoration: "none" }}
+          css={css`
+            &:hover {
+              box-shadow: 1px 1px ${theme.palette.secondary.main};
+            }
+          `}
+        >
           <img
-            key={item.id}
             src={item.img}
             alt={item.id}
             loading="lazy"
@@ -39,14 +47,17 @@ const Home = (props) => {
               place-self: center;
               justify-content: center;
               cursor: pointer;
+              margin-bottom: 5px;
               border: 2px dotted ${theme.palette.primary.main};
               outline: 4px solid ${theme.palette.secondary.main};
               &:hover {
                 outline: 4px dotted ${theme.palette.primary.main};
                 border: 2px solid ${theme.palette.secondary.main};
+                box-shadow: 1px 1px ${theme.palette.secondary.main};
               }
             `}
           />
+          <div>Level {item.level}</div>
         </Link>
       ))}
     </div>
