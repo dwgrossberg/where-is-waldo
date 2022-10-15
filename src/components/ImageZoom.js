@@ -1,15 +1,15 @@
 import { useState } from "react";
 
-const ImageMagnifier = (props) => {
+const ImageZoom = (props) => {
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
   const src = props.img;
   const width = props.width;
   const height = props.height;
-  const magnifierHeight = 100;
-  const magnifierWidth = 100;
-  const zoomLevel = 1.5;
+  const magnifierHeight = 150;
+  const magnifierWidth = 150;
+  const zoomLevel = 3;
   return (
     <div
       style={{
@@ -78,4 +78,4 @@ const ImageMagnifier = (props) => {
   );
 };
 
-export default ImageMagnifier;
+export default ImageZoom;

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useParams } from "react-router-dom";
-import ImageMagnifier from "./ImageMagnifier";
+import ImageZoom from "./ImageZoom";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
@@ -17,7 +17,7 @@ const Puzzle = (props) => {
         height: 100%;
       `}
     >
-      <ImageMagnifier img={thisPuzzle.img} width={"100%"} height={"100%"} />
+      <ImageZoom img={thisPuzzle.img} width={"100%"} height={"100%"} />
     </div>
   );
 };
