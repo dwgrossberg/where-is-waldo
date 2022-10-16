@@ -68,6 +68,7 @@ const ImageZoom = (props) => {
         onMouseDown={getCursorPosition}
         alt={"img"}
       />
+
       {/* Magnifier Lens */}
       <div
         style={{

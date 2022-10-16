@@ -3,6 +3,7 @@ import { css } from "@emotion/react";
 import { useParams } from "react-router-dom";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
+import PopUp from "./PopUp";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
@@ -41,6 +42,7 @@ const Puzzle = (props) => {
             gap: 20px;
             margin-bottom: 15px;
             box-shadow: 0 5px 5px -3px ${theme.palette.secondary.main};
+            padding: 5px;
           `}
         >
           {thisPuzzle.characters.map((item) => {
@@ -74,6 +76,7 @@ const Puzzle = (props) => {
         </div>
       </div>
       <ImageZoom img={thisPuzzle.img} width={"100%"} height={"100%"} />
+      <PopUp />
     </div>
   );
 };

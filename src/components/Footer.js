@@ -14,7 +14,7 @@ const Footer = () => {
           align-items: center;
           justify-content: center;
           gap: 10px;
-          font-size: 12px;
+          font-size: 14px;
           padding: 3px;
           border-radius: 7px;
           width: 100%;
@@ -33,8 +33,7 @@ const Footer = () => {
             alt="github-icon"
             src={gitHubIcon}
             css={css`
-              height: 12px;
-              max-height: 16px;
+              height: 17px;
               margin-top: 3px;
               transition: transform 0.3s ease-in-out;
               &:hover {
