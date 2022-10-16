@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Link } from "react-router-dom";
-import theme from "../components/theme";
+import theme from "../theme";
 
 const Home = (props) => {
   const { puzzles } = props;
@@ -23,9 +23,10 @@ const Home = (props) => {
         css={css`
           grid-area: 1 / 1 / 2 / -1;
           place-self: center;
+          font-size: 18px;
         `}
       >
-        Choose a game board to get started!
+        Choose a puzzle to get started!
       </p>
       {puzzles.map((item) => (
         <Link
@@ -33,21 +34,30 @@ const Home = (props) => {
           key={item.id}
           style={{ textDecoration: "none" }}
           css={css`
-            border-radius: 0 0 7px 7px;
-            border-bottom: 2px solid transparent;
             display: block;
             position: relative;
             padding-bottom: 5px;
-
+            border: 3px solid transparent;
+            border-bottom: 2px solid transparent;
+            border-radius: 0 0 7px 7px;
+            border-bottom: 0.5px dotted white;
+            box-shadow: 0 2px 2px -1.5px lightgrey;
             &:hover {
-              border-bottom: 2px dotted ${theme.palette.primary.main};
-              box-shadow: 0 8px 8px -4px lightgrey;
+              box-shadow: 0 5px 5px -3px ${theme.palette.secondary.main};
+              .puzzle-img {
+                border: 3px dotted ${theme.palette.primary.main};
+                outline: 3px solid ${theme.palette.secondary.main};
+              }
+              p {
+                color: ${theme.palette.primary.main};
+              }
             }
           `}
         >
           <img
             src={item.img}
             alt={item.id}
+            className={"puzzle-img"}
             loading="lazy"
             css={css`
               width: 100%;
@@ -55,12 +65,8 @@ const Home = (props) => {
               justify-content: center;
               cursor: pointer;
               margin-bottom: 5px;
-              border: 2px dotted white;
-              outline: 4px solid lightgrey;
-              &:hover {
-                border: 2px dotted ${theme.palette.primary.main};
-                outline: 4px solid ${theme.palette.secondary.main};
-              }
+              border: 3px dotted white;
+              outline: 3px solid lightgrey;
             `}
           />
           <div
@@ -71,7 +77,7 @@ const Home = (props) => {
               padding: 3px 7px;
             `}
           >
-            Level {item.level}
+            <p>Level {item.level}</p>
             <div
               css={css`
                 display: flex;

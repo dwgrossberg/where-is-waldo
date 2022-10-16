@@ -5,11 +5,10 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { NavLink } from "react-router-dom";
-import theme from "./theme";
+import theme from "../theme";
 
 export default function ColorTabs() {
   const [value, setValue] = React.useState("Home");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };

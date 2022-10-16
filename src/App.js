@@ -4,7 +4,7 @@ import { Routes, Route, HashRouter } from "react-router-dom";
 import ColorTabs from "./components/ColorTabs";
 import Footer from "./components/Footer";
 import Puzzle from "./components/Puzzle";
-import theme from "./components/theme";
+import theme from "./theme";
 import Home from "./pages/Home";
 import TopScore from "./pages/TopScore";
 import waldo1 from "./assets/waldo1.jpg";
