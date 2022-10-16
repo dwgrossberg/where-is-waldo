@@ -1,7 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useState } from "react";
-import Button from "@mui/material/Button";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -11,13 +7,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import PersonIcon from "@mui/icons-material/Person";
 import AddIcon from "@mui/icons-material/Add";
-import Typography from "@mui/material/Typography";
 import { blue } from "@mui/material/colors";
 
-const emails = ["username@gmail.com", "user02@gmail.com"];
-
-export default function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
+const SimpleDialog = (props) => {
+  const { emails, onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -42,7 +35,7 @@ export default function SimpleDialog(props) {
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={email} />
+            <ListItemText />
           </ListItem>
         ))}
         <ListItem
@@ -60,4 +53,6 @@ export default function SimpleDialog(props) {
       </List>
     </Dialog>
   );
-}
+};
+
+export default SimpleDialog;

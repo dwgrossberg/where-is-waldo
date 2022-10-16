@@ -9,6 +9,7 @@ const ImageZoom = (props) => {
   const src = props.img;
   const width = props.width;
   const height = props.height;
+  const { handleClickOpen } = props;
   const magnifierHeight = 150;
   const magnifierWidth = 150;
   const zoomLevel = 3;
@@ -66,6 +67,7 @@ const ImageZoom = (props) => {
         onMouseMove={updateCursorPosition}
         onMouseLeave={closeMagnifier}
         onMouseDown={getCursorPosition}
+        onClick={handleClickOpen}
         alt={"img"}
       />
 

@@ -1,14 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
-import PopUp from "./PopUp";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import SimpleDialog from "./PopUp";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
+  const [open, setOpen] = useState(false);
+  const emails = ["username@gmail.com", "user02@gmail.com"];
+  const [selectedValue, setSelectedValue] = useState(emails[0]);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+
   return (
     <div
       css={css`
@@ -75,8 +90,18 @@ const Puzzle = (props) => {
           })}
         </div>
       </div>
-      <ImageZoom img={thisPuzzle.img} width={"100%"} height={"100%"} />
-      <PopUp />
+      <ImageZoom
+        img={thisPuzzle.img}
+        width={"100%"}
+        height={"100%"}
+        handleClickOpen={handleClickOpen}
+      />
+      <SimpleDialog
+        emails={emails}
+        selectedValue={selectedValue}
+        open={open}
+        onClose={handleClose}
+      />
     </div>
   );
 };
