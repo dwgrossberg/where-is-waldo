@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -6,11 +8,10 @@ import ListItemText from "@mui/material/ListItemText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import PersonIcon from "@mui/icons-material/Person";
-import AddIcon from "@mui/icons-material/Add";
 import { blue } from "@mui/material/colors";
 
 const SimpleDialog = (props) => {
-  const { emails, onClose, selectedValue, open } = props;
+  const { thisPuzzle, onClose, selectedValue, open, docCoords, coords } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -21,35 +22,40 @@ const SimpleDialog = (props) => {
   };
 
   return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
+    <Dialog
+      container={() => document.getElementById("img-zoom")}
+      onClose={handleClose}
+      open={open}
+      scroll={"paper"}
+      PaperProps={{
+        sx: {
+          position: "absolute",
+          top: `${docCoords[1] - coords[1]}px`,
+          left: `${docCoords[0] - coords[0]}px`,
+          m: 0,
+        },
+      }}
+    >
+      <DialogTitle>Who did you find?</DialogTitle>
       <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
+        {thisPuzzle.characters.map((item) => (
           <ListItem
             button
-            onClick={() => handleListItemClick(email)}
-            key={email}
+            onClick={() => handleListItemClick(item.name)}
+            key={item.name}
           >
             <ListItemAvatar>
-              <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
+              <Avatar
+                sx={{ bgcolor: blue[100], color: blue[600] }}
+                alt={item.name}
+                src={item.img}
+              >
                 <PersonIcon />
               </Avatar>
             </ListItemAvatar>
-            <ListItemText />
+            <ListItemText primary={item.name} />
           </ListItem>
         ))}
-        <ListItem
-          autoFocus
-          button
-          onClick={() => handleListItemClick("addAccount")}
-        >
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
       </List>
     </Dialog>
   );

@@ -5,18 +5,17 @@ const ImageZoom = (props) => {
   const [[x, y], setXY] = useState([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
-  const [[coordX, coordY], setCoordXY] = useState([0, 0]);
   const src = props.img;
   const width = props.width;
   const height = props.height;
-  const { handleClickOpen } = props;
+  const { handleClickOpen, setCoordXY, setDocXY } = props;
   const magnifierHeight = 150;
   const magnifierWidth = 150;
   const zoomLevel = 3;
 
   useEffect(() => {
-    console.log([coordX, coordY]);
-  }, [coordX, coordY]);
+    console.log([x, y]);
+  }, [x, y]);
 
   const updateImgSize = (e) => {
     // update image size and turn-on magnifier
@@ -34,6 +33,7 @@ const ImageZoom = (props) => {
     const x = e.pageX - left - window.pageXOffset;
     const y = e.pageY - top - window.pageYOffset;
     setXY([x, y]);
+    setDocXY([x, y]);
   };
 
   const closeMagnifier = () => {
@@ -54,6 +54,7 @@ const ImageZoom = (props) => {
 
   return (
     <div
+      id="img-zoom"
       style={{
         position: "relative",
         height: height,

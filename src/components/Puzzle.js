@@ -1,20 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import SimpleDialog from "./PopUp";
+import SimpleDialog from "./SimpleDialog";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
+  const [[coordX, coordY], setCoordXY] = useState([0, 0]);
+  const [[docX, docY], setDocXY] = useState([0, 0]);
   const [open, setOpen] = useState(false);
-  const emails = ["username@gmail.com", "user02@gmail.com"];
-  const [selectedValue, setSelectedValue] = useState(emails[0]);
+  const [selectedValue, setSelectedValue] = useState(
+    thisPuzzle.characters[0].name
+  );
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -23,6 +25,10 @@ const Puzzle = (props) => {
     setOpen(false);
     setSelectedValue(value);
   };
+
+  useEffect(() => {
+    console.log([coordX, coordY]);
+  }, [coordX, coordY]);
 
   return (
     <div
@@ -34,6 +40,7 @@ const Puzzle = (props) => {
         align-items: center;
         width: 100%;
         height: 100%;
+        position: relative;
       `}
     >
       <div
@@ -95,12 +102,16 @@ const Puzzle = (props) => {
         width={"100%"}
         height={"100%"}
         handleClickOpen={handleClickOpen}
+        setCoordXY={setCoordXY}
+        setDocXY={setDocXY}
       />
       <SimpleDialog
-        emails={emails}
+        thisPuzzle={thisPuzzle}
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
+        coords={[coordX, coordY]}
+        docCoords={[docX, docY]}
       />
     </div>
   );
