@@ -3,13 +3,13 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
 import CharactersDialog from "./CharactersDialog";
 
 const Puzzle = (props) => {
-  const { puzzles, setPuzzles } = props;
+  const { puzzles } = props;
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
   const [[coordX, coordY], setCoordXY] = useState([0, 0]);
@@ -27,19 +27,46 @@ const Puzzle = (props) => {
     setOpen(false);
     setSelectedValue(value);
     console.log(value);
-    // const getData = async () => {
-    //   const querySnapshot = await getDocs(collection(db, "puzzles"));
-    //   querySnapshot.forEach((doc) => {
-    //     console.log(doc.id, " => ", doc.data());
-    //   });
-    // };
-    // getData();
   };
 
   useEffect(() => {
     console.log([coordX, coordY]);
-    // console.log(thisPuzzle);
-  }, [coordX, coordY, thisPuzzle]);
+  }, [coordX, coordY]);
+
+  useEffect(() => {
+    const getData = async () => {
+      let docRef;
+      switch (thisPuzzle.level) {
+        case 1:
+          docRef = doc(db, "puzzles", "level1");
+          break;
+        case 2:
+          docRef = doc(db, "puzzles", "level2");
+          break;
+        case 3:
+          docRef = doc(db, "puzzles", "level3");
+          break;
+        case 4:
+          docRef = doc(db, "puzzles", "level4");
+          break;
+        case 5:
+          docRef = doc(db, "puzzles", "level5");
+          break;
+        case 6:
+          docRef = doc(db, "puzzles", "level6");
+          break;
+        default:
+          docRef = undefined;
+      }
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        console.log("No such document!");
+      }
+    };
+    getData();
+  }, []);
 
   return (
     <div

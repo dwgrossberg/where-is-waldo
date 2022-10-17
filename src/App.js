@@ -97,10 +97,7 @@ const App = () => {
           <ColorTabs />
           <Routes>
             <Route path="/" element={<Home puzzles={puzzles} />} />
-            <Route
-              path="/puzzles/:id"
-              element={<Puzzle puzzles={puzzles} setPuzzles={setPuzzles} />}
-            />
+            <Route path="/puzzles/:id" element={<Puzzle puzzles={puzzles} />} />
             <Route path="/top-scores" element={<TopScore />} />
           </Routes>
         </HashRouter>
