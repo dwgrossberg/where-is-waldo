@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import ColorTabs from "./components/ColorTabs";
 import Footer from "./components/Footer";
@@ -15,7 +15,7 @@ import waldo5 from "./assets/waldo5.jpg";
 import waldo6 from "./assets/waldo6.jpg";
 import waldo from "./assets/waldo.jpg";
 import wizard from "./assets/wizard.jpg";
-import wendy from "./assets/wendy.jpg";
+import wenda from "./assets/wendy.jpg";
 import odlaw from "./assets/odlaw.jpg";
 
 import "./styles/App.scss";
@@ -29,7 +29,7 @@ const App = () => {
       characters: [
         { name: "waldo", img: waldo },
         { name: "wizard", img: wizard },
-        { name: "wendy", img: wendy },
+        { name: "wenda", img: wenda },
         { name: "odlaw", img: odlaw },
       ],
     },
@@ -40,7 +40,7 @@ const App = () => {
       characters: [
         { name: "waldo", img: waldo },
         { name: "wizard", img: wizard },
-        { name: "wendy", img: wendy },
+        { name: "wenda", img: wenda },
         { name: "odlaw", img: odlaw },
       ],
     },
@@ -51,7 +51,7 @@ const App = () => {
       characters: [
         { name: "waldo", img: waldo },
         { name: "wizard", img: wizard },
-        { name: "wendy", img: wendy },
+        { name: "wenda", img: wenda },
         { name: "odlaw", img: odlaw },
       ],
     },
@@ -62,7 +62,7 @@ const App = () => {
       characters: [
         { name: "waldo", img: waldo },
         { name: "wizard", img: wizard },
-        { name: "wendy", img: wendy },
+        { name: "wenda", img: wenda },
         { name: "odlaw", img: odlaw },
       ],
     },
@@ -73,7 +73,7 @@ const App = () => {
       characters: [
         { name: "waldo", img: waldo },
         { name: "wizard", img: wizard },
-        { name: "wendy", img: wendy },
+        { name: "wenda", img: wenda },
         { name: "odlaw", img: odlaw },
       ],
     },
@@ -84,7 +84,7 @@ const App = () => {
       characters: [
         { name: "waldo", img: waldo },
         { name: "wizard", img: wizard },
-        { name: "wendy", img: wendy },
+        { name: "wenda", img: wenda },
         { name: "odlaw", img: odlaw },
       ],
     },
@@ -97,7 +97,10 @@ const App = () => {
           <ColorTabs />
           <Routes>
             <Route path="/" element={<Home puzzles={puzzles} />} />
-            <Route path="/puzzles/:id" element={<Puzzle puzzles={puzzles} />} />
+            <Route
+              path="/puzzles/:id"
+              element={<Puzzle puzzles={puzzles} setPuzzles={setPuzzles} />}
+            />
             <Route path="/top-scores" element={<TopScore />} />
           </Routes>
         </HashRouter>

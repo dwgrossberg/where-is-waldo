@@ -13,10 +13,6 @@ const ImageZoom = (props) => {
   const magnifierWidth = 150;
   const zoomLevel = 3;
 
-  useEffect(() => {
-    console.log([x, y]);
-  }, [x, y]);
-
   const updateImgSize = (e) => {
     // update image size and turn-on magnifier
     const elem = e.currentTarget;

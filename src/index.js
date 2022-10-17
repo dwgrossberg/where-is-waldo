@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.scss";
 import App from "./App";
 import { db } from "./firebase";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 
 const getData = async () => {
   const querySnapshot = await getDocs(collection(db, "users"));

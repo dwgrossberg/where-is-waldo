@@ -10,7 +10,7 @@ import Dialog from "@mui/material/Dialog";
 import PersonIcon from "@mui/icons-material/Person";
 import { blue } from "@mui/material/colors";
 
-const SimpleDialog = (props) => {
+const CharactersDialog = (props) => {
   const { thisPuzzle, onClose, selectedValue, open, docCoords, coords } = props;
 
   const handleClose = () => {
@@ -23,7 +23,6 @@ const SimpleDialog = (props) => {
 
   return (
     <Dialog
-      container={() => document.getElementById("img-zoom")}
       onClose={handleClose}
       open={open}
       scroll={"paper"}
@@ -61,4 +60,4 @@ const SimpleDialog = (props) => {
   );
 };
 
-export default SimpleDialog;
+export default CharactersDialog;

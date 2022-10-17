@@ -2,12 +2,14 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { db } from "../firebase";
+import { collection, getDocs } from "firebase/firestore";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
-import SimpleDialog from "./SimpleDialog";
+import CharactersDialog from "./CharactersDialog";
 
 const Puzzle = (props) => {
-  const { puzzles } = props;
+  const { puzzles, setPuzzles } = props;
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
   const [[coordX, coordY], setCoordXY] = useState([0, 0]);
@@ -24,11 +26,20 @@ const Puzzle = (props) => {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    console.log(value);
+    // const getData = async () => {
+    //   const querySnapshot = await getDocs(collection(db, "puzzles"));
+    //   querySnapshot.forEach((doc) => {
+    //     console.log(doc.id, " => ", doc.data());
+    //   });
+    // };
+    // getData();
   };
 
   useEffect(() => {
     console.log([coordX, coordY]);
-  }, [coordX, coordY]);
+    // console.log(thisPuzzle);
+  }, [coordX, coordY, thisPuzzle]);
 
   return (
     <div
@@ -105,7 +116,7 @@ const Puzzle = (props) => {
         setCoordXY={setCoordXY}
         setDocXY={setDocXY}
       />
-      <SimpleDialog
+      <CharactersDialog
         thisPuzzle={thisPuzzle}
         selectedValue={selectedValue}
         open={open}
