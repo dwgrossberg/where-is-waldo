@@ -7,6 +7,7 @@ import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
 import CharactersDialog from "./CharactersDialog";
+import Stopwatch from "./Stopwatch";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
@@ -18,6 +19,23 @@ const Puzzle = (props) => {
   const [selectedValue, setSelectedValue] = useState(
     thisPuzzle.characters[0].name
   );
+  const [characterPositions, setCharacterPositions] = useState({
+    waldo: [0, 0],
+    wizard: [0, 0],
+    wenda: [0, 0],
+    odlaw: [0, 0],
+  });
+
+  const isCoordWithinTwoDegrees = (coord1, coord2) => {
+    console.log(coord1, coord2);
+    return (
+      coord1 === coord2 ||
+      coord1 + 1 === coord2 ||
+      coord1 + 2 === coord2 ||
+      coord1 - 1 === coord2 ||
+      coord1 - 2 === coord2
+    );
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -26,6 +44,42 @@ const Puzzle = (props) => {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    switch (value) {
+      case "waldo":
+        if (
+          isCoordWithinTwoDegrees(coordX, characterPositions.waldo[0]) &&
+          isCoordWithinTwoDegrees(coordY, characterPositions.waldo[1])
+        ) {
+          console.log("hit");
+        }
+        break;
+      case "wizard":
+        if (
+          isCoordWithinTwoDegrees(coordX, characterPositions.wizard[0]) &&
+          isCoordWithinTwoDegrees(coordY, characterPositions.wizard[1])
+        ) {
+          console.log("hit");
+        }
+        break;
+      case "wenda":
+        if (
+          isCoordWithinTwoDegrees(coordX, characterPositions.wenda[0]) &&
+          isCoordWithinTwoDegrees(coordY, characterPositions.wenda[1])
+        ) {
+          console.log("hit");
+        }
+        break;
+      case "odlaw":
+        if (
+          isCoordWithinTwoDegrees(coordX, characterPositions.odlaw[0]) &&
+          isCoordWithinTwoDegrees(coordY, characterPositions.odlaw[1])
+        ) {
+          console.log("hit");
+        }
+        break;
+      default:
+        console.log("none");
+    }
     console.log(value);
   };
 
@@ -64,9 +118,27 @@ const Puzzle = (props) => {
       } else {
         console.log("No such document!");
       }
+      setCharacterPositions({
+        waldo: [
+          docSnap.data().characters.waldo.coords[0],
+          docSnap.data().characters.waldo.coords[1],
+        ],
+        wizard: [
+          docSnap.data().characters.wizard.coords[0],
+          docSnap.data().characters.wizard.coords[1],
+        ],
+        wenda: [
+          docSnap.data().characters.wendy.coords[0],
+          docSnap.data().characters.wendy.coords[1],
+        ],
+        odlaw: [
+          docSnap.data().characters.odlaw.coords[0],
+          docSnap.data().characters.odlaw.coords[1],
+        ],
+      });
     };
     getData();
-  }, []);
+  }, [thisPuzzle]);
 
   return (
     <div
@@ -81,6 +153,7 @@ const Puzzle = (props) => {
         position: relative;
       `}
     >
+      <Stopwatch />
       <div
         css={css`
           display: flex;
