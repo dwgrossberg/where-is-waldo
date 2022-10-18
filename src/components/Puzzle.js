@@ -153,14 +153,15 @@ const Puzzle = (props) => {
         position: relative;
       `}
     >
-      <Stopwatch />
       <div
         css={css`
           display: flex;
           flex-direction: column;
+          align-items: center;
           gap: 15px;
         `}
       >
+        <Stopwatch />
         <p
           css={css`
             text-align: center;

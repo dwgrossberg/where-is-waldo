@@ -59,7 +59,12 @@ const ImageZoom = (props) => {
     >
       <img
         src={src}
-        style={{ height: height, width: width, cursor: "crosshair" }}
+        style={{
+          height: height,
+          width: width,
+          cursor: "crosshair",
+          minWidth: "100%",
+        }}
         onMouseEnter={updateImgSize}
         onMouseMove={updateCursorPosition}
         onMouseLeave={closeMagnifier}
