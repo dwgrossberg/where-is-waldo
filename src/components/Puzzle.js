@@ -61,6 +61,14 @@ const Puzzle = (props) => {
     );
   };
 
+  const isGameOver = () => {
+    return characters.every(
+      (item) => Object.values(Object.values(item))[0].isHit
+    )
+      ? true
+      : false;
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -69,20 +77,33 @@ const Puzzle = (props) => {
     setSnackHitOpen(value);
   };
 
-  const handleSnackMissOpen = () => {
-    setSnackMissOpen(true);
+  const handleSnackMissOpen = (value) => {
+    setSnackMissOpen(value);
   };
 
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    const charactersCopy = { ...characters };
     switch (value) {
       case "waldo":
         if (
           isCoordWithinTwoDegrees(coordX, characters[0].waldo.coords[0]) &&
           isCoordWithinTwoDegrees(coordY, characters[0].waldo.coords[1])
         ) {
-          console.log("hit");
+          setSnackHitOpen(true);
+          charactersCopy[0].waldo.isHit = true;
+          setCharacters([
+            charactersCopy[0],
+            characters[1],
+            characters[2],
+            characters[3],
+          ]);
+          document.getElementById("waldo").style.opacity = 0.15;
+          console.log(isGameOver());
+        } else {
+          setSnackMissOpen(true);
+          console.log(isGameOver());
         }
         break;
       case "wizard":
@@ -90,7 +111,18 @@ const Puzzle = (props) => {
           isCoordWithinTwoDegrees(coordX, characters[1].wizard.coords[0]) &&
           isCoordWithinTwoDegrees(coordY, characters[1].wizard.coords[1])
         ) {
-          console.log("hit");
+          setSnackHitOpen(true);
+          charactersCopy[1].wizard.isHit = true;
+          setCharacters([
+            characters[0],
+            charactersCopy[1],
+            characters[2],
+            characters[3],
+          ]);
+          document.getElementById("wizard").style.opacity = 0.15;
+          console.log(isGameOver());
+        } else {
+          setSnackMissOpen(true);
         }
         break;
       case "wenda":
@@ -98,7 +130,18 @@ const Puzzle = (props) => {
           isCoordWithinTwoDegrees(coordX, characters[2].wenda.coords[0]) &&
           isCoordWithinTwoDegrees(coordY, characters[2].wenda.coords[1])
         ) {
-          console.log("hit");
+          setSnackHitOpen(true);
+          charactersCopy[2].wenda.isHit = true;
+          setCharacters([
+            characters[0],
+            characters[1],
+            charactersCopy[2],
+            characters[3],
+          ]);
+          document.getElementById("wenda").style.opacity = 0.15;
+          console.log(isGameOver());
+        } else {
+          setSnackMissOpen(true);
         }
         break;
       case "odlaw":
@@ -106,14 +149,23 @@ const Puzzle = (props) => {
           isCoordWithinTwoDegrees(coordX, characters[3].odlaw.coords[0]) &&
           isCoordWithinTwoDegrees(coordY, characters[3].odlaw.coords[1])
         ) {
-          console.log("hit");
+          setSnackHitOpen(true);
+          charactersCopy[3].odlaw.isHit = true;
+          setCharacters([
+            characters[0],
+            characters[1],
+            characters[2],
+            charactersCopy[3],
+          ]);
+          document.getElementById("odlaw").style.opacity = 0.15;
+          console.log(isGameOver());
+        } else {
+          setSnackMissOpen(true);
         }
         break;
       default:
         console.log("none");
     }
-    setSnackHitOpen(true);
-    console.log(value);
   };
 
   useEffect(() => {
@@ -252,6 +304,7 @@ const Puzzle = (props) => {
                 </p>
                 <img
                   alt={item.name}
+                  id={item.name}
                   src={item.img}
                   css={css`
                     height: 30px;
@@ -283,7 +336,7 @@ const Puzzle = (props) => {
         handleSnackHitOpen={handleSnackHitOpen}
       />
       <SnackbarMiss
-        snackMissOpen={snackMissOpen}
+        isHit={snackMissOpen}
         handleSnackMissOpen={handleSnackMissOpen}
       />
     </div>

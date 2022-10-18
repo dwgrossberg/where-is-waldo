@@ -41,11 +41,13 @@ const CustomSnackbar = styled("div")(
   `
 );
 
-export default function UseSnackbar() {
+export default function UseSnackbar(props) {
   const [open, setOpen] = React.useState(false);
+  const { isHit, handleSnackMissOpen } = props;
 
   const handleClose = () => {
     setOpen(false);
+    handleSnackMissOpen(false);
   };
 
   const { getRootProps, onClickAway } = useSnackbar({
@@ -54,15 +56,14 @@ export default function UseSnackbar() {
     autoHideDuration: 5000,
   });
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  React.useEffect(() => {
+    if (isHit) {
+      setOpen(true);
+    }
+  }, [isHit]);
 
   return (
     <React.Fragment>
-      <button type="button" onClick={handleOpen}>
-        Open Snackbar
-      </button>
       {open ? (
         <ClickAwayListener onClickAway={onClickAway}>
           <CustomSnackbar {...getRootProps()}>
