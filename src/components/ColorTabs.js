@@ -46,7 +46,7 @@ export default function ColorTabs() {
           }
         `}
       >
-        {"Where's Waldo"}
+        {"Where's Waldo?"}
       </h1>
     </Box>
   );

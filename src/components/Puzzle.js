@@ -3,11 +3,13 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import theme from "../theme";
 import ImageZoom from "./ImageZoom";
 import CharactersDialog from "./CharactersDialog";
 import Stopwatch from "./Stopwatch";
+import SnackbarHit from "./SnackbarHit";
+import SnackbarMiss from "./SnackbarMiss";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
@@ -19,12 +21,32 @@ const Puzzle = (props) => {
   const [selectedValue, setSelectedValue] = useState(
     thisPuzzle.characters[0].name
   );
-  const [characterPositions, setCharacterPositions] = useState({
-    waldo: [0, 0],
-    wizard: [0, 0],
-    wenda: [0, 0],
-    odlaw: [0, 0],
-  });
+  const [characters, setCharacters] = useState([
+    {
+      waldo: {
+        coords: [0, 0],
+        isHit: false,
+      },
+    },
+    {
+      wizard: {
+        coords: [0, 0],
+        isHit: false,
+      },
+    },
+    {
+      wenda: {
+        coords: [0, 0],
+        isHit: false,
+      },
+    },
+    {
+      odlaw: {
+        coords: [0, 0],
+        isHit: false,
+      },
+    },
+  ]);
 
   const isCoordWithinTwoDegrees = (coord1, coord2) => {
     console.log(coord1, coord2);
@@ -47,32 +69,32 @@ const Puzzle = (props) => {
     switch (value) {
       case "waldo":
         if (
-          isCoordWithinTwoDegrees(coordX, characterPositions.waldo[0]) &&
-          isCoordWithinTwoDegrees(coordY, characterPositions.waldo[1])
+          isCoordWithinTwoDegrees(coordX, characters[0].waldo.coords[0]) &&
+          isCoordWithinTwoDegrees(coordY, characters[0].waldo.coords[1])
         ) {
           console.log("hit");
         }
         break;
       case "wizard":
         if (
-          isCoordWithinTwoDegrees(coordX, characterPositions.wizard[0]) &&
-          isCoordWithinTwoDegrees(coordY, characterPositions.wizard[1])
+          isCoordWithinTwoDegrees(coordX, characters[1].wizard.coords[0]) &&
+          isCoordWithinTwoDegrees(coordY, characters[1].wizard.coords[1])
         ) {
           console.log("hit");
         }
         break;
       case "wenda":
         if (
-          isCoordWithinTwoDegrees(coordX, characterPositions.wenda[0]) &&
-          isCoordWithinTwoDegrees(coordY, characterPositions.wenda[1])
+          isCoordWithinTwoDegrees(coordX, characters[2].wenda.coords[0]) &&
+          isCoordWithinTwoDegrees(coordY, characters[2].wenda.coords[1])
         ) {
           console.log("hit");
         }
         break;
       case "odlaw":
         if (
-          isCoordWithinTwoDegrees(coordX, characterPositions.odlaw[0]) &&
-          isCoordWithinTwoDegrees(coordY, characterPositions.odlaw[1])
+          isCoordWithinTwoDegrees(coordX, characters[3].odlaw.coords[0]) &&
+          isCoordWithinTwoDegrees(coordY, characters[3].odlaw.coords[1])
         ) {
           console.log("hit");
         }
@@ -118,24 +140,44 @@ const Puzzle = (props) => {
       } else {
         console.log("No such document!");
       }
-      setCharacterPositions({
-        waldo: [
-          docSnap.data().characters.waldo.coords[0],
-          docSnap.data().characters.waldo.coords[1],
-        ],
-        wizard: [
-          docSnap.data().characters.wizard.coords[0],
-          docSnap.data().characters.wizard.coords[1],
-        ],
-        wenda: [
-          docSnap.data().characters.wendy.coords[0],
-          docSnap.data().characters.wendy.coords[1],
-        ],
-        odlaw: [
-          docSnap.data().characters.odlaw.coords[0],
-          docSnap.data().characters.odlaw.coords[1],
-        ],
-      });
+      setCharacters([
+        {
+          waldo: {
+            coords: [
+              docSnap.data().characters.waldo.coords[0],
+              docSnap.data().characters.waldo.coords[1],
+            ],
+            isHit: false,
+          },
+        },
+        {
+          wizard: {
+            coords: [
+              docSnap.data().characters.wizard.coords[0],
+              docSnap.data().characters.wizard.coords[1],
+            ],
+            isHit: false,
+          },
+        },
+        {
+          wenda: {
+            coords: [
+              docSnap.data().characters.wendy.coords[0],
+              docSnap.data().characters.wendy.coords[1],
+            ],
+            isHit: false,
+          },
+        },
+        {
+          odlaw: {
+            coords: [
+              docSnap.data().characters.odlaw.coords[0],
+              docSnap.data().characters.odlaw.coords[1],
+            ],
+            isHit: false,
+          },
+        },
+      ]);
     };
     getData();
   }, [thisPuzzle]);
@@ -225,6 +267,8 @@ const Puzzle = (props) => {
         coords={[coordX, coordY]}
         docCoords={[docX, docY]}
       />
+      <SnackbarHit />
+      <SnackbarMiss />
     </div>
   );
 };
