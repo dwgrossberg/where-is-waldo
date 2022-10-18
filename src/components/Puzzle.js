@@ -20,6 +20,7 @@ const Puzzle = (props) => {
   const [open, setOpen] = useState(false);
   const [snackHitOpen, setSnackHitOpen] = useState(false);
   const [snackMissOpen, setSnackMissOpen] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     thisPuzzle.characters[0].name
   );
@@ -69,6 +70,15 @@ const Puzzle = (props) => {
       : false;
   };
 
+  const handleGameOver = () => {
+    document.getElementById("waldo").style.opacity = "";
+    document.getElementById("wizard").style.opacity = "";
+    document.getElementById("wenda").style.opacity = "";
+    document.getElementById("odlaw").style.opacity = "";
+    setGameOver(true);
+    //stop watch, direct to top scores page
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -100,10 +110,11 @@ const Puzzle = (props) => {
             characters[3],
           ]);
           document.getElementById("waldo").style.opacity = 0.15;
-          console.log(isGameOver());
+          if (isGameOver()) {
+            handleGameOver();
+          }
         } else {
           setSnackMissOpen(true);
-          console.log(isGameOver());
         }
         break;
       case "wizard":
@@ -120,7 +131,9 @@ const Puzzle = (props) => {
             characters[3],
           ]);
           document.getElementById("wizard").style.opacity = 0.15;
-          console.log(isGameOver());
+          if (isGameOver()) {
+            handleGameOver();
+          }
         } else {
           setSnackMissOpen(true);
         }
@@ -139,7 +152,9 @@ const Puzzle = (props) => {
             characters[3],
           ]);
           document.getElementById("wenda").style.opacity = 0.15;
-          console.log(isGameOver());
+          if (isGameOver()) {
+            handleGameOver();
+          }
         } else {
           setSnackMissOpen(true);
         }
@@ -158,7 +173,9 @@ const Puzzle = (props) => {
             charactersCopy[3],
           ]);
           document.getElementById("odlaw").style.opacity = 0.15;
-          console.log(isGameOver());
+          if (isGameOver()) {
+            handleGameOver();
+          }
         } else {
           setSnackMissOpen(true);
         }
@@ -167,10 +184,6 @@ const Puzzle = (props) => {
         console.log("none");
     }
   };
-
-  useEffect(() => {
-    console.log([coordX, coordY]);
-  }, [coordX, coordY]);
 
   useEffect(() => {
     const getData = async () => {
@@ -266,7 +279,7 @@ const Puzzle = (props) => {
           gap: 15px;
         `}
       >
-        <Stopwatch />
+        <Stopwatch gameOver={gameOver} />
         <p
           css={css`
             text-align: center;

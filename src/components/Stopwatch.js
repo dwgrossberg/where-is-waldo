@@ -2,9 +2,11 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 
-const Stopwatch = () => {
+const Stopwatch = (props) => {
+  const { gameOver } = props;
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(true);
+
   useEffect(() => {
     let interval;
     if (running) {
@@ -16,12 +18,19 @@ const Stopwatch = () => {
     }
     return () => clearInterval(interval);
   }, [running]);
+
+  useEffect(() => {
+    if (gameOver) {
+      setRunning(false);
+      console.log(time);
+    }
+  }, [gameOver]);
+
   return (
     <div className="stopwatch">
       <div
         className="numbers"
         css={css`
-          //   width: 200px;
           font-family: Inconsolata;
           font-size: 20px;
           display: flex;
