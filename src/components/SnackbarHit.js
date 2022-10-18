@@ -3,13 +3,6 @@ import { useSnackbar } from "@mui/base/SnackbarUnstyled";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
 import { css, keyframes, styled } from "@mui/system";
 
-const blue = {
-  50: "#F0F7FF",
-  400: "#3399FF",
-  600: "#0072E5",
-  900: "#003A75",
-};
-
 const grey = {
   200: "#E0E3E7",
 };
@@ -25,7 +18,7 @@ const snackbarInRight = keyframes`
 `;
 
 const CustomSnackbar = styled("div")(
-  ({ theme }) => css`
+  () => css`
     position: fixed;
     z-index: 5500;
     display: flex;
@@ -35,14 +28,12 @@ const CustomSnackbar = styled("div")(
     justify-content: start;
     max-width: 560px;
     min-width: 300px;
-    background-color: ${theme.palette.mode === "dark" ? blue[900] : blue[50]};
+    background-color: #8fdce4;
     border-radius: 8px;
-    border: 1px solid ${theme.palette.mode === "dark" ? blue[600] : blue[400]};
-    box-shadow: ${theme.palette.mode === "dark"
-      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
-      : `0 5px 13px -3px ${grey[200]}`};
+    border: 1px solid white;
+    box-shadow: ${`0 5px 13px -3px ${grey[200]}`};
     padding: 0.75rem;
-    color: ${theme.palette.mode === "dark" ? "#fff" : blue[900]};
+    color: #202832;
     font-family: IBM Plex Sans, sans-serif;
     font-weight: 600;
     animation: ${snackbarInRight} 500ms;
@@ -50,11 +41,13 @@ const CustomSnackbar = styled("div")(
   `
 );
 
-export default function UseSnackbar() {
+export default function SnackbarHit(props) {
   const [open, setOpen] = React.useState(false);
+  const { isHit, handleSnackHitOpen } = props;
 
   const handleClose = () => {
     setOpen(false);
+    handleSnackHitOpen(false);
   };
 
   const { getRootProps, onClickAway } = useSnackbar({
@@ -63,19 +56,18 @@ export default function UseSnackbar() {
     autoHideDuration: 5000,
   });
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  React.useEffect(() => {
+    if (isHit) {
+      setOpen(true);
+    }
+  }, [isHit]);
 
   return (
     <React.Fragment>
-      <button type="button" onClick={handleOpen}>
-        Open Snackbar
-      </button>
       {open ? (
         <ClickAwayListener onClickAway={onClickAway}>
           <CustomSnackbar {...getRootProps()}>
-            That's right,good eye!
+            That's right, good eye!
           </CustomSnackbar>
         </ClickAwayListener>
       ) : null}

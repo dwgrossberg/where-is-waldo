@@ -18,6 +18,8 @@ const Puzzle = (props) => {
   const [[coordX, coordY], setCoordXY] = useState([0, 0]);
   const [[docX, docY], setDocXY] = useState([0, 0]);
   const [open, setOpen] = useState(false);
+  const [snackHitOpen, setSnackHitOpen] = useState(false);
+  const [snackMissOpen, setSnackMissOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     thisPuzzle.characters[0].name
   );
@@ -63,6 +65,14 @@ const Puzzle = (props) => {
     setOpen(true);
   };
 
+  const handleSnackHitOpen = (value) => {
+    setSnackHitOpen(value);
+  };
+
+  const handleSnackMissOpen = () => {
+    setSnackMissOpen(true);
+  };
+
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
@@ -102,6 +112,7 @@ const Puzzle = (props) => {
       default:
         console.log("none");
     }
+    setSnackHitOpen(true);
     console.log(value);
   };
 
@@ -267,8 +278,14 @@ const Puzzle = (props) => {
         coords={[coordX, coordY]}
         docCoords={[docX, docY]}
       />
-      <SnackbarHit />
-      <SnackbarMiss />
+      <SnackbarHit
+        isHit={snackHitOpen}
+        handleSnackHitOpen={handleSnackHitOpen}
+      />
+      <SnackbarMiss
+        snackMissOpen={snackMissOpen}
+        handleSnackMissOpen={handleSnackMissOpen}
+      />
     </div>
   );
 };

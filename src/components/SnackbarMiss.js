@@ -3,20 +3,13 @@ import { useSnackbar } from "@mui/base/SnackbarUnstyled";
 import ClickAwayListener from "@mui/base/ClickAwayListener";
 import { css, keyframes, styled } from "@mui/system";
 
-const blue = {
-  50: "#F0F7FF",
-  400: "#3399FF",
-  600: "#0072E5",
-  900: "#003A75",
-};
-
 const grey = {
   200: "#E0E3E7",
 };
 
-const snackbarInRight = keyframes`
+const snackbarInLeft = keyframes`
   from {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
 
   to {
@@ -25,27 +18,25 @@ const snackbarInRight = keyframes`
 `;
 
 const CustomSnackbar = styled("div")(
-  ({ theme }) => css`
+  () => css`
     position: fixed;
     z-index: 5500;
     display: flex;
-    right: 16px;
+    left: 16px;
     top: 16px;
-    left: auto;
+    right: auto;
     justify-content: start;
     max-width: 560px;
     min-width: 300px;
-    background-color: ${theme.palette.mode === "dark" ? blue[900] : blue[50]};
+    background-color: #d62e45;
     border-radius: 8px;
-    border: 1px solid ${theme.palette.mode === "dark" ? blue[600] : blue[400]};
-    box-shadow: ${theme.palette.mode === "dark"
-      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
-      : `0 5px 13px -3px ${grey[200]}`};
+    border: 1px solid white;
+    box-shadow: ${`0 5px 13px -3px ${grey[200]}`};
     padding: 0.75rem;
-    color: ${theme.palette.mode === "dark" ? "#fff" : blue[900]};
+    color: white;
     font-family: IBM Plex Sans, sans-serif;
     font-weight: 600;
-    animation: ${snackbarInRight} 500ms;
+    animation: ${snackbarInLeft} 500ms;
     transition: transform 0.2s ease-out;
   `
 );

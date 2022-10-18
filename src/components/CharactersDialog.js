@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
 import Avatar from "@mui/material/Avatar";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
