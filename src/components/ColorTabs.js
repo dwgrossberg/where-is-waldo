@@ -31,10 +31,10 @@ export default function ColorTabs() {
       >
         <Tab value="Home" label="Home" component={NavLink} to={"/"} />
         <Tab
-          value="Top Scores"
-          label="Top Scores"
+          value="Best Times"
+          label="Best Times"
           component={NavLink}
-          to={"/top-scores"}
+          to={"/best-times"}
         />
       </Tabs>
       <h1

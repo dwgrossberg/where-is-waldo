@@ -1,12 +1,14 @@
 import { ThemeProvider } from "@emotion/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
+import { db } from "./firebase";
+import { getDocs, collection, query, where } from "firebase/firestore";
 import ColorTabs from "./components/ColorTabs";
 import Footer from "./components/Footer";
 import Puzzle from "./components/Puzzle";
 import theme from "./theme";
 import Home from "./pages/Home";
-import TopScore from "./pages/TopScore";
+import BestTimes from "./pages/BestTimes";
 import waldo1 from "./assets/waldo1.jpg";
 import waldo2 from "./assets/waldo2.jpg";
 import waldo3 from "./assets/waldo3.jpg";
@@ -17,7 +19,6 @@ import waldo from "./assets/waldo.jpg";
 import wizard from "./assets/wizard.jpg";
 import wenda from "./assets/wendy.jpg";
 import odlaw from "./assets/odlaw.jpg";
-
 import "./styles/App.scss";
 
 const App = () => {
@@ -90,6 +91,18 @@ const App = () => {
     },
   ]);
 
+  const [bestTimes, setBestTimes] = useState([]);
+
+  useEffect(() => {
+    const getTimes = async () => {
+      const querySnapshot = await getDocs(collection(db, "puzzles"));
+      querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data());
+      });
+    };
+    getTimes();
+  }, []);
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -98,7 +111,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home puzzles={puzzles} />} />
             <Route path="/puzzles/:id" element={<Puzzle puzzles={puzzles} />} />
-            <Route path="/top-scores" element={<TopScore />} />
+            <Route path="/best-times" element={<BestTimes />} />
           </Routes>
         </HashRouter>
         <Footer />

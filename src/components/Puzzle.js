@@ -76,7 +76,7 @@ const Puzzle = (props) => {
     document.getElementById("wenda").style.opacity = "";
     document.getElementById("odlaw").style.opacity = "";
     setGameOver(true);
-    //stop watch, direct to top scores page
+    //stop watch, direct to top scores page - input name
   };
 
   const handleClickOpen = () => {
