@@ -91,17 +91,57 @@ const App = () => {
     },
   ]);
 
-  const [bestTimes, setBestTimes] = useState([]);
+  const [bestTimes, setBestTimes] = useState([
+    { level1: [] },
+    { level2: [] },
+    { level3: [] },
+    { level4: [] },
+    { level5: [] },
+    { level6: [] },
+  ]);
 
   useEffect(() => {
     const getTimes = async () => {
       const querySnapshot = await getDocs(collection(db, "puzzles"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        console.log(doc.id, " => ", doc.data().bestTimes);
+        const bestTimesCopy = [...bestTimes];
+        switch (doc.id) {
+          case "level1":
+            bestTimesCopy[0].level1 = doc.data().bestTimes;
+            setBestTimes(bestTimesCopy);
+            break;
+          case "level2":
+            bestTimesCopy[1].level2 = doc.data().bestTimes;
+            setBestTimes(bestTimesCopy);
+            break;
+          case "level3":
+            bestTimesCopy[2].level3 = doc.data().bestTimes;
+            setBestTimes(bestTimesCopy);
+            break;
+          case "level4":
+            bestTimesCopy[3].level4 = doc.data().bestTimes;
+            setBestTimes(bestTimesCopy);
+            break;
+          case "level5":
+            bestTimesCopy[4].level5 = doc.data().bestTimes;
+            setBestTimes(bestTimesCopy);
+            break;
+          case "level6":
+            bestTimesCopy[5].level6 = doc.data().bestTimes;
+            setBestTimes(bestTimesCopy);
+            break;
+          default:
+            console.log(doc.id);
+        }
       });
     };
     getTimes();
   }, []);
+
+  useEffect(() => {
+    console.log(bestTimes);
+  }, [bestTimes]);
 
   return (
     <div className="App">
