@@ -7,6 +7,15 @@ const Stopwatch = (props) => {
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(true);
 
+  function msToTime(duration) {
+    const milliseconds = Math.floor((duration % 1000) / 10);
+    let seconds = Math.floor((duration / 1000) % 60);
+    let minutes = Math.floor((duration / (1000 * 60)) % 60);
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    return minutes + ":" + seconds + "." + milliseconds;
+  }
+
   useEffect(() => {
     let interval;
     if (running) {
@@ -22,7 +31,7 @@ const Stopwatch = (props) => {
   useEffect(() => {
     if (gameOver) {
       setRunning(false);
-      console.log(time);
+      console.log(msToTime(time));
     }
   }, [gameOver]);
 
@@ -49,7 +58,7 @@ const Stopwatch = (props) => {
         </span>
         <span>
           <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-          <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+          <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}.</span>
           <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
         </span>
       </div>

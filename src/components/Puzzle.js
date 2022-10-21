@@ -52,7 +52,6 @@ const Puzzle = (props) => {
   ]);
 
   const isCoordWithinTwoDegrees = (coord1, coord2) => {
-    console.log(coord1, coord2);
     return (
       coord1 === coord2 ||
       coord1 + 1 === coord2 ||
@@ -211,11 +210,6 @@ const Puzzle = (props) => {
           docRef = undefined;
       }
       const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-      } else {
-        console.log("No such document!");
-      }
       setCharacters([
         {
           waldo: {

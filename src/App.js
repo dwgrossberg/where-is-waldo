@@ -104,7 +104,6 @@ const App = () => {
     const getTimes = async () => {
       const querySnapshot = await getDocs(collection(db, "puzzles"));
       querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data().bestTimes);
         const bestTimesCopy = [...bestTimes];
         switch (doc.id) {
           case "level1":
@@ -139,10 +138,6 @@ const App = () => {
     getTimes();
   }, []);
 
-  useEffect(() => {
-    console.log(bestTimes);
-  }, [bestTimes]);
-
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -151,7 +146,10 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home puzzles={puzzles} />} />
             <Route path="/puzzles/:id" element={<Puzzle puzzles={puzzles} />} />
-            <Route path="/best-times" element={<BestTimes />} />
+            <Route
+              path="/best-times"
+              element={<BestTimes bestTimes={bestTimes} />}
+            />
           </Routes>
         </HashRouter>
         <Footer />

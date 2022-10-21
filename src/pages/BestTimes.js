@@ -1,11 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
-import { db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+import TimeTabs from "../components/TimeTabs";
 
 const BestTimes = (props) => {
-  return <div className="BestTimes">BestTimes</div>;
+  const { bestTimes } = props;
+  return (
+    <div className="BestTimes">
+      <TimeTabs bestTimes={bestTimes} />
+    </div>
+  );
 };
 
 export default BestTimes;
