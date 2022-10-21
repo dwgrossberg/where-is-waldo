@@ -7,9 +7,11 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TimeRows from "./TimeRows";
+import { Link, NavLink } from "react-router-dom";
 
 export default function TimeTabs(props) {
-  const [value, setValue] = React.useState("1");
+  const { level } = props;
+  const [value, setValue] = React.useState(level ? level : "1");
   const { bestTimes } = props;
 
   const handleChange = (event, newValue) => {
@@ -24,6 +26,8 @@ export default function TimeTabs(props) {
             <Tab
               label="Level 1"
               value="1"
+              component={Link}
+              to={"/best-times/level-1"}
               css={css`
                 font-size: 12px;
               `}
@@ -31,6 +35,8 @@ export default function TimeTabs(props) {
             <Tab
               label="Level 2"
               value="2"
+              component={Link}
+              to={"/best-times/level-2"}
               css={css`
                 font-size: 12px;
               `}

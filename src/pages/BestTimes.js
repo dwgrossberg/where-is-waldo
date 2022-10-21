@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import TimeTabs from "../components/TimeTabs";
 
 const BestTimes = (props) => {
-  const { bestTimes } = props;
+  const { bestTimes, level } = props;
   return (
     <div className="BestTimes">
-      <TimeTabs bestTimes={bestTimes} />
+      <TimeTabs bestTimes={bestTimes} level={level} />
     </div>
   );
 };

@@ -150,6 +150,14 @@ const App = () => {
               path="/best-times"
               element={<BestTimes bestTimes={bestTimes} />}
             />
+            <Route
+              path="/best-times/level-1"
+              element={<BestTimes bestTimes={bestTimes} level={"1"} />}
+            />
+            <Route
+              path="/best-times/level-2"
+              element={<BestTimes bestTimes={bestTimes} level={"2"} />}
+            />
           </Routes>
         </HashRouter>
         <Footer />
