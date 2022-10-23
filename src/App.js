@@ -90,7 +90,6 @@ const App = () => {
       ],
     },
   ]);
-
   const [bestTimes, setBestTimes] = useState([
     { level1: [] },
     { level2: [] },
@@ -157,6 +156,22 @@ const App = () => {
             <Route
               path="/best-times/level-2"
               element={<BestTimes bestTimes={bestTimes} level={"2"} />}
+            />
+            <Route
+              path="/best-times/level-3"
+              element={<BestTimes bestTimes={bestTimes} level={"3"} />}
+            />
+            <Route
+              path="/best-times/level-4"
+              element={<BestTimes bestTimes={bestTimes} level={"4"} />}
+            />
+            <Route
+              path="/best-times/level-5"
+              element={<BestTimes bestTimes={bestTimes} level={"5"} />}
+            />
+            <Route
+              path="/best-times/level-6"
+              element={<BestTimes bestTimes={bestTimes} level={"6"} />}
             />
           </Routes>
         </HashRouter>

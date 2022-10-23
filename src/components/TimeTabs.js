@@ -7,7 +7,7 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 import TimeRows from "./TimeRows";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function TimeTabs(props) {
   const { level } = props;
@@ -44,6 +44,8 @@ export default function TimeTabs(props) {
             <Tab
               label="Level 3"
               value="3"
+              component={Link}
+              to={"/best-times/level-3"}
               css={css`
                 font-size: 12px;
               `}
@@ -51,6 +53,8 @@ export default function TimeTabs(props) {
             <Tab
               label="Level 4"
               value="4"
+              component={Link}
+              to={"/best-times/level-4"}
               css={css`
                 font-size: 12px;
               `}
@@ -58,6 +62,8 @@ export default function TimeTabs(props) {
             <Tab
               label="Level 5"
               value="5"
+              component={Link}
+              to={"/best-times/level-5"}
               css={css`
                 font-size: 12px;
               `}
@@ -65,6 +71,8 @@ export default function TimeTabs(props) {
             <Tab
               label="Level 6"
               value="6"
+              component={Link}
+              to={"/best-times/level-6"}
               css={css`
                 font-size: 12px;
               `}

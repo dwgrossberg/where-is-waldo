@@ -32,7 +32,6 @@ const Home = (props) => {
         <Link
           to={"/puzzles/" + item.id}
           key={item.id}
-          style={{ textDecoration: "none" }}
           css={css`
             display: block;
             position: relative;
@@ -42,6 +41,8 @@ const Home = (props) => {
             border-radius: 0 0 7px 7px;
             border-bottom: 0.5px dotted white;
             box-shadow: 0 2px 2px -1.5px lightgrey;
+            text-decoration: none;
+            color: inherit;
             &:hover {
               box-shadow: 0 5px 5px -3px ${theme.palette.secondary.main};
               .puzzle-img {
