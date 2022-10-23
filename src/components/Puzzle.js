@@ -10,6 +10,7 @@ import CharactersDialog from "./CharactersDialog";
 import Stopwatch from "./Stopwatch";
 import SnackbarHit from "./SnackbarHit";
 import SnackbarMiss from "./SnackbarMiss";
+import FormDialog from "./FormDialog";
 
 const Puzzle = (props) => {
   const { puzzles } = props;
@@ -70,10 +71,10 @@ const Puzzle = (props) => {
   };
 
   const handleGameOver = () => {
-    document.getElementById("waldo").style.opacity = "";
-    document.getElementById("wizard").style.opacity = "";
-    document.getElementById("wenda").style.opacity = "";
-    document.getElementById("odlaw").style.opacity = "";
+    // document.getElementById("waldo").style.opacity = "";
+    // document.getElementById("wizard").style.opacity = "";
+    // document.getElementById("wenda").style.opacity = "";
+    // document.getElementById("odlaw").style.opacity = "";
     setGameOver(true);
     //stop watch, direct to top scores page - input name
   };
@@ -109,6 +110,9 @@ const Puzzle = (props) => {
             characters[3],
           ]);
           document.getElementById("waldo").style.opacity = 0.15;
+          document.getElementById("waldowaldo").style.opacity = 0.5;
+          document.getElementById("waldowaldo").style.textDecoration =
+            "line-through";
           if (isGameOver()) {
             handleGameOver();
           }
@@ -130,6 +134,9 @@ const Puzzle = (props) => {
             characters[3],
           ]);
           document.getElementById("wizard").style.opacity = 0.15;
+          document.getElementById("wizardwizard").style.opacity = 0.5;
+          document.getElementById("wizardwizard").style.textDecoration =
+            "line-through";
           if (isGameOver()) {
             handleGameOver();
           }
@@ -151,6 +158,9 @@ const Puzzle = (props) => {
             characters[3],
           ]);
           document.getElementById("wenda").style.opacity = 0.15;
+          document.getElementById("wendawenda").style.opacity = 0.5;
+          document.getElementById("wendawenda").style.textDecoration =
+            "line-through";
           if (isGameOver()) {
             handleGameOver();
           }
@@ -172,6 +182,9 @@ const Puzzle = (props) => {
             charactersCopy[3],
           ]);
           document.getElementById("odlaw").style.opacity = 0.15;
+          document.getElementById("odlawodlaw").style.opacity = 0.5;
+          document.getElementById("odlawodlaw").style.textDecoration =
+            "line-through";
           if (isGameOver()) {
             handleGameOver();
           }
@@ -302,11 +315,11 @@ const Puzzle = (props) => {
                 `}
               >
                 <p
+                  id={item.name + item.name}
                   css={css`
                     margin-right: 3px;
                   `}
                 >
-                  {" "}
                   {item.name}
                 </p>
                 <img
@@ -346,6 +359,7 @@ const Puzzle = (props) => {
         isHit={snackMissOpen}
         handleSnackMissOpen={handleSnackMissOpen}
       />
+      <FormDialog gameOver={gameOver} />
     </div>
   );
 };
