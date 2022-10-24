@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import { NavLink, useLocation } from "react-router-dom";
 import theme from "../theme";
 
-export default function ColorTabs(props) {
+export default function ColorTabs() {
   const [value, setValue] = React.useState("Home");
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -16,8 +16,6 @@ export default function ColorTabs(props) {
   React.useEffect(() => {
     if (location.pathname.slice(0, 11) === "/best-times") {
       setValue("Best Times");
-    } else if (location.pathname.slice(0, 9) === "/puzzles") {
-      setValue(false);
     }
   }, [location]);
 

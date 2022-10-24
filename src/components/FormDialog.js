@@ -7,12 +7,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, set } from "firebase/database";
+import Filter from "bad-words";
 
 export default function FormDialog(props) {
   const { gameOver, puzzleTime, level } = props;
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
   const navigate = useNavigate();
+  const filter = new Filter();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -29,8 +32,9 @@ export default function FormDialog(props) {
   };
 
   const handleEnter = (e) => {
-    console.log(value);
+    console.log(filter.clean(value));
     navigate(`/best-times/level-${level}`);
+    writeData(value, puzzleTime);
   };
 
   React.useEffect(() => {
@@ -38,6 +42,14 @@ export default function FormDialog(props) {
       setOpen(true);
     }
   }, [gameOver]);
+
+  const writeData = (level, name, time) => {
+    const db = getDatabase();
+    set(ref(db, "puzzles/" + level), {
+      name: name,
+      time: time,
+    });
+  };
 
   return (
     <div>
