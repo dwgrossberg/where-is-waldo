@@ -19,7 +19,6 @@ export default function ColorTabs(props) {
     } else if (location.pathname.slice(0, 9) === "/puzzles") {
       setValue(false);
     }
-    console.log(location);
   }, [location]);
 
   return (

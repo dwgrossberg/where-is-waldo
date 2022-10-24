@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Where's Waldo?",
+  "name": "Where's Waldo? A photo-tagging App built with React and Firebase",
   "icons": [
     {
       "src": "favicon.ico",

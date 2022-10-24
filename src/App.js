@@ -135,7 +135,7 @@ const App = () => {
       });
     };
     getTimes();
-  }, []);
+  }, [bestTimes]);
 
   return (
     <div className="App">

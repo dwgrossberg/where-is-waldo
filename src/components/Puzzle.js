@@ -22,6 +22,7 @@ const Puzzle = (props) => {
   const [snackHitOpen, setSnackHitOpen] = useState(false);
   const [snackMissOpen, setSnackMissOpen] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [puzzleTime, setPuzzleTime] = useState(false);
   const [selectedValue, setSelectedValue] = useState(
     thisPuzzle.characters[0].name
   );
@@ -71,10 +72,6 @@ const Puzzle = (props) => {
   };
 
   const handleGameOver = () => {
-    // document.getElementById("waldo").style.opacity = "";
-    // document.getElementById("wizard").style.opacity = "";
-    // document.getElementById("wenda").style.opacity = "";
-    // document.getElementById("odlaw").style.opacity = "";
     setGameOver(true);
     //stop watch, direct to top scores page - input name
   };
@@ -286,7 +283,7 @@ const Puzzle = (props) => {
           gap: 15px;
         `}
       >
-        <Stopwatch gameOver={gameOver} />
+        <Stopwatch gameOver={gameOver} setPuzzleTime={setPuzzleTime} />
         <p
           css={css`
             text-align: center;
@@ -359,7 +356,11 @@ const Puzzle = (props) => {
         isHit={snackMissOpen}
         handleSnackMissOpen={handleSnackMissOpen}
       />
-      <FormDialog gameOver={gameOver} />
+      <FormDialog
+        gameOver={gameOver}
+        puzzleTime={puzzleTime}
+        level={thisPuzzle.level}
+      />
     </div>
   );
 };

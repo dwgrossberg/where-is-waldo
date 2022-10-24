@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 
 const Stopwatch = (props) => {
-  const { gameOver } = props;
+  const { gameOver, setPuzzleTime } = props;
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(true);
 
@@ -31,7 +31,7 @@ const Stopwatch = (props) => {
   useEffect(() => {
     if (gameOver) {
       setRunning(false);
-      console.log(msToTime(time));
+      setPuzzleTime(msToTime(time));
     }
   }, [gameOver]);
 

@@ -6,17 +6,34 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useNavigate } from "react-router-dom";
 
 export default function FormDialog(props) {
-  const { gameOver } = props;
+  const { gameOver, puzzleTime, level } = props;
   const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+  const navigate = useNavigate();
 
-  const handleClose = () => {
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason && reason === "backdropClick") return;
     setOpen(false);
+    navigate("/");
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleEnter = (e) => {
+    console.log(value);
+    navigate(`/best-times/level-${level}`);
   };
 
   React.useEffect(() => {
-    console.log(gameOver);
     if (gameOver) {
       setOpen(true);
     }
@@ -24,26 +41,32 @@ export default function FormDialog(props) {
 
   return (
     <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Open form dialog
+      </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>
+          Puzzle Complete! <p>Final Time: {puzzleTime}</p>
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            Well done, you found Waldo and all of his friends. Enter your name
+            to record your time for this level:
           </DialogContentText>
           <TextField
+            onChange={handleChange}
             autoFocus
             margin="dense"
             id="name"
-            label="Email Address"
-            type="email"
+            label="name"
+            type="text"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleEnter}>Enter</Button>
         </DialogActions>
       </Dialog>
     </div>
