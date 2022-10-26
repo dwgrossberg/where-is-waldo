@@ -220,6 +220,7 @@ const Puzzle = (props) => {
           docRef = undefined;
       }
       const docSnap = await getDoc(docRef);
+      console.log(docSnap.data());
       setCharacters([
         {
           waldo: {
@@ -260,7 +261,7 @@ const Puzzle = (props) => {
       ]);
     };
     getData();
-  }, [thisPuzzle]);
+  }, []);
 
   return (
     <div

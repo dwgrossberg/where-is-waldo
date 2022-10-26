@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import React, { useState, useEffect } from "react";
 import { Routes, Route, HashRouter } from "react-router-dom";
 import { db } from "./firebase";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { getDocs, collection } from "firebase/firestore";
 import ColorTabs from "./components/ColorTabs";
 import Footer from "./components/Footer";
 import Puzzle from "./components/Puzzle";
@@ -103,6 +103,7 @@ const App = () => {
     const getTimes = async () => {
       const querySnapshot = await getDocs(collection(db, "puzzles"));
       querySnapshot.forEach((doc) => {
+        console.log(doc.data());
         const bestTimesCopy = [...bestTimes];
         switch (doc.id) {
           case "level1":
@@ -135,7 +136,7 @@ const App = () => {
       });
     };
     getTimes();
-  }, [bestTimes]);
+  }, []);
 
   return (
     <div className="App">

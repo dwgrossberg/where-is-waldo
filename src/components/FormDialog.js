@@ -7,13 +7,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-import { getDatabase, ref, set } from "firebase/database";
+import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
+import { db } from "../firebase";
 import Filter from "bad-words";
 
 export default function FormDialog(props) {
   const { gameOver, puzzleTime, level } = props;
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+  const [bestTimes, setBestTimes] = React.useState(0);
   const navigate = useNavigate();
   const filter = new Filter();
 
@@ -32,9 +34,9 @@ export default function FormDialog(props) {
   };
 
   const handleEnter = (e) => {
-    console.log(filter.clean(value));
+    filter.clean(value);
+    writeData(value);
     navigate(`/best-times/level-${level}`);
-    writeData(value, puzzleTime);
   };
 
   React.useEffect(() => {
@@ -43,12 +45,26 @@ export default function FormDialog(props) {
     }
   }, [gameOver]);
 
-  const writeData = (level, name, time) => {
-    const db = getDatabase();
-    set(ref(db, "puzzles/" + level), {
-      name: name,
-      time: time,
-    });
+  React.useEffect(() => {
+    const getTimes = async () => {
+      const docRef = doc(db, "puzzles", "level" + level);
+      const docSnap = await getDoc(docRef);
+      setBestTimes(docSnap.data().bestTimes.length);
+    };
+    getTimes();
+  }, []);
+
+  const writeData = async (name) => {
+    try {
+      const docRef = doc(db, "puzzles", "level" + level);
+      await docRef.update({
+        regions: bestTimes.arrayUnion({ name: name, time: puzzleTime }),
+      });
+
+      console.log("Document written");
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   };
 
   return (
