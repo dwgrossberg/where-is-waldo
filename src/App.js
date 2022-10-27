@@ -147,7 +147,7 @@ const App = () => {
             <Route path="/" element={<Home puzzles={puzzles} />} />
             <Route
               path="/puzzles/:id"
-              element={<Puzzle puzzles={puzzles} bestTimes={bestTimes} />}
+              element={<Puzzle puzzles={puzzles} getTimes={getTimes} />}
             />
             <Route
               path="/best-times"

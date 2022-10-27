@@ -7,14 +7,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-import { doc, setDoc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebase";
 import Filter from "bad-words";
 
 export default function FormDialog(props) {
-  const { gameOver, puzzleTime, level, bestTimes } = props;
+  const { gameOver, puzzleTime, level, getTimes } = props;
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
+  const [leaderLength, setLeaderLength] = React.useState(0);
   const navigate = useNavigate();
   const filter = new Filter();
   const handleClickOpen = () => {
@@ -34,10 +35,13 @@ export default function FormDialog(props) {
   const handleEnter = async (e) => {
     const docRef = doc(db, "puzzles", "level" + level);
     await updateDoc(docRef, {
-      bestTimes: arrayUnion({ name: filter.clean(value), time: puzzleTime }),
+      bestTimes: arrayUnion({
+        id: leaderLength,
+        name: filter.clean(value),
+        time: puzzleTime,
+      }),
     });
-
-    // setDoc(docRef, {bestTimes}, { merge: true });
+    getTimes();
     navigate(`/best-times/level-${level}`);
   };
 
@@ -47,14 +51,14 @@ export default function FormDialog(props) {
     }
   }, [gameOver]);
 
-  //   React.useEffect(() => {
-  //     const getTimes = async () => {
-  //       const docRef = doc(db, "puzzles", "level" + level);
-  //       const docSnap = await getDoc(docRef);
-  //       setLeaderLength(docSnap.data().bestTimes.length);
-  //     };
-  //     getTimes();
-  //   }, []);
+  React.useEffect(() => {
+    const getTimes = async () => {
+      const docRef = doc(db, "puzzles", "level" + level);
+      const docSnap = await getDoc(docRef);
+      setLeaderLength(docSnap.data().bestTimes.length);
+    };
+    getTimes();
+  }, []);
 
   return (
     <div>
