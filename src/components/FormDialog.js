@@ -7,18 +7,16 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
-import { doc, getDoc, setDoc, getDocs, collection } from "firebase/firestore";
+import { doc, setDoc, getDoc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebase";
 import Filter from "bad-words";
 
 export default function FormDialog(props) {
-  const { gameOver, puzzleTime, level } = props;
+  const { gameOver, puzzleTime, level, bestTimes } = props;
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState("");
-  const [bestTimes, setBestTimes] = React.useState(0);
   const navigate = useNavigate();
   const filter = new Filter();
-
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -33,9 +31,13 @@ export default function FormDialog(props) {
     setValue(e.target.value);
   };
 
-  const handleEnter = (e) => {
-    filter.clean(value);
-    writeData(value);
+  const handleEnter = async (e) => {
+    const docRef = doc(db, "puzzles", "level" + level);
+    await updateDoc(docRef, {
+      bestTimes: arrayUnion({ name: filter.clean(value), time: puzzleTime }),
+    });
+
+    // setDoc(docRef, {bestTimes}, { merge: true });
     navigate(`/best-times/level-${level}`);
   };
 
@@ -45,27 +47,14 @@ export default function FormDialog(props) {
     }
   }, [gameOver]);
 
-  React.useEffect(() => {
-    const getTimes = async () => {
-      const docRef = doc(db, "puzzles", "level" + level);
-      const docSnap = await getDoc(docRef);
-      setBestTimes(docSnap.data().bestTimes.length);
-    };
-    getTimes();
-  }, []);
-
-  const writeData = async (name) => {
-    try {
-      const docRef = doc(db, "puzzles", "level" + level);
-      await docRef.update({
-        regions: bestTimes.arrayUnion({ name: name, time: puzzleTime }),
-      });
-
-      console.log("Document written");
-    } catch (e) {
-      console.error("Error adding document: ", e);
-    }
-  };
+  //   React.useEffect(() => {
+  //     const getTimes = async () => {
+  //       const docRef = doc(db, "puzzles", "level" + level);
+  //       const docSnap = await getDoc(docRef);
+  //       setLeaderLength(docSnap.data().bestTimes.length);
+  //     };
+  //     getTimes();
+  //   }, []);
 
   return (
     <div>

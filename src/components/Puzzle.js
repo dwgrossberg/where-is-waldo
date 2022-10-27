@@ -13,7 +13,7 @@ import SnackbarMiss from "./SnackbarMiss";
 import FormDialog from "./FormDialog";
 
 const Puzzle = (props) => {
-  const { puzzles } = props;
+  const { puzzles, bestTimes } = props;
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
   const [[coordX, coordY], setCoordXY] = useState([0, 0]);
@@ -361,6 +361,7 @@ const Puzzle = (props) => {
         gameOver={gameOver}
         puzzleTime={puzzleTime}
         level={thisPuzzle.level}
+        bestTimes={bestTimes}
       />
     </div>
   );
