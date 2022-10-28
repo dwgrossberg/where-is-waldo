@@ -1,8 +1,20 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen, cleanup } from "@testing-library/react";
+import App from "../App";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("App component", () => {
+  afterEach(cleanup);
+  it("snapshot test", () => {
+    const { container } = render(<App />);
+    expect(container).toMatchSnapshot();
+  });
+
+  it("renders correct heading", () => {
+    render(<App />);
+    expect(screen.getByRole("heading").textContent).toMatch(/Where's Waldo?/i);
+  });
+
+  it("displays the correct number of puzzles", () => {
+    render(<App />);
+    expect(screen.getAllByAltText(/waldo/i)).toHaveLength(6);
+  });
 });

@@ -10,7 +10,7 @@ export default function TimeRows(props) {
   const ODD_OPACITY = 0.2;
 
   const StripedDataGrid = styled(DataGrid)(({ theme }) => ({
-    [`& .${gridClasses.row}.even`]: {
+    [`& .${gridClasses.row}.odd`]: {
       backgroundColor: theme.palette.grey[200],
       "&:hover, &.Mui-hovered": {
         backgroundColor: alpha(theme.palette.primary.main, ODD_OPACITY),
