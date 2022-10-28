@@ -62,9 +62,6 @@ export default function FormDialog(props) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>
           Puzzle Complete! <p>Final Time: {puzzleTime}</p>
