@@ -52,7 +52,17 @@ export default function ColorTabs() {
           }
         `}
       >
-        {"Where's Waldo?"}
+        <a
+          href="https://en.wikipedia.org/wiki/Where%27s_Wally%3F"
+          target="_blank"
+          rel="noreferrer"
+          css={css`
+            text-decoration: none;
+            color: inherit;
+          `}
+        >
+          {"Where's Waldo?"}
+        </a>
       </h1>
     </Box>
   );

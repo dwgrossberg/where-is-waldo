@@ -55,7 +55,14 @@ exports[`App component snapshot test 1`] = `
       <h1
         class="css-1rux908-ColorTabs"
       >
-        Where's Waldo?
+        <a
+          class="css-12u716j-ColorTabs"
+          href="https://en.wikipedia.org/wiki/Where%27s_Wally%3F"
+          rel="noreferrer"
+          target="_blank"
+        >
+          Where's Waldo?
+        </a>
       </h1>
     </div>
     <div
