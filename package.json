@@ -2,6 +2,7 @@
   "name": "where-is-waldo",
   "version": "0.1.0",
   "private": true,
+  "homepage": "htts://dwgrossberg.github.io/where-is-waldo",
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
