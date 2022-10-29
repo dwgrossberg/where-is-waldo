@@ -33,6 +33,13 @@ describe("App component", () => {
     );
   });
 
+  it("clicking on each puzzle img redirects and updates DOM", async () => {
+    render(<App />);
+    const user = userEvent.setup();
+    await user.click(screen.getAllByAltText(/waldo/i)[3]);
+    expect(screen.getAllByRole("img")[4]).toHaveAttribute("src", "waldo4.jpg");
+  });
+
   it("clicking on the Best Times tab navigates to the correct page", async () => {
     render(<App />);
     const user = userEvent.setup();
