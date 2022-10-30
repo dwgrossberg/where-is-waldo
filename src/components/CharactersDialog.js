@@ -9,7 +9,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { blue } from "@mui/material/colors";
 
 const CharactersDialog = (props) => {
-  const { thisPuzzle, onClose, selectedValue, open, docCoords, coords } = props;
+  const { thisPuzzle, onClose, selectedValue, open } = props;
 
   const handleClose = () => {
     onClose(selectedValue);
@@ -20,19 +20,7 @@ const CharactersDialog = (props) => {
   };
 
   return (
-    <Dialog
-      onClose={handleClose}
-      open={open}
-      scroll={"paper"}
-      PaperProps={{
-        sx: {
-          position: "absolute",
-          top: `${docCoords[1] - coords[1]}px`,
-          left: `${docCoords[0] - coords[0]}px`,
-          m: 0,
-        },
-      }}
-    >
+    <Dialog onClose={handleClose} open={open} scroll={"paper"}>
       <DialogTitle>Who did you find?</DialogTitle>
       <List sx={{ pt: 0 }}>
         {thisPuzzle.characters.map((item) => (

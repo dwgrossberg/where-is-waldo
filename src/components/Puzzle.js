@@ -17,7 +17,6 @@ const Puzzle = (props) => {
   const params = useParams();
   const thisPuzzle = puzzles.find((item) => item.id === params.id);
   const [[coordX, coordY], setCoordXY] = useState([0, 0]);
-  const [[docX, docY], setDocXY] = useState([0, 0]);
   const [open, setOpen] = useState(false);
   const [snackHitOpen, setSnackHitOpen] = useState(false);
   const [snackMissOpen, setSnackMissOpen] = useState(false);
@@ -339,15 +338,12 @@ const Puzzle = (props) => {
         height={"100%"}
         handleClickOpen={handleClickOpen}
         setCoordXY={setCoordXY}
-        setDocXY={setDocXY}
       />
       <CharactersDialog
         thisPuzzle={thisPuzzle}
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
-        coords={[coordX, coordY]}
-        docCoords={[docX, docY]}
       />
       <SnackbarHit
         isHit={snackHitOpen}

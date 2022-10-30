@@ -22,7 +22,7 @@ export default function TimeTabs(props) {
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange} aria-label="best-times-level-tabs">
             <Tab
               label="Level 1"
               value="1"
