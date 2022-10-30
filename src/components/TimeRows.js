@@ -48,8 +48,8 @@ export default function TimeRows(props) {
         <div style={{ flexGrow: 1 }}>
           <StripedDataGrid
             columns={[
-              { field: "name", width: 200 },
-              { field: "time", width: 150 },
+              { field: "name", flex: 1 },
+              { field: "time", flex: 1 },
             ]}
             rows={bestTimes}
             initialState={{
@@ -62,6 +62,15 @@ export default function TimeRows(props) {
                 background-color: ${theme.palette.secondary.main};
                 font-size: 14px;
                 text-transform: uppercase;
+              }
+              @media screen and (max-width: 500px) {
+                width: 400px;
+              }
+              @media screen and (max-width: 450px) {
+                width: 350px;
+              }
+              @media screen and (max-width: 400px) {
+                width: 300px;
               }
             `}
             getRowClassName={(params) =>

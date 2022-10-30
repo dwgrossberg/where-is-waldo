@@ -17,3 +17,9 @@
   margin-top: 10px;
   z-index: 10;
 }
+
+@media screen and (max-width: 500px) {
+  .App {
+    padding: 10px;
+  }
+}

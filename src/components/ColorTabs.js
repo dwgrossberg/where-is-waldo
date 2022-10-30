@@ -35,12 +35,27 @@ export default function ColorTabs() {
         indicatorColor="secondary"
         aria-label="primary tabs example"
       >
-        <Tab value="Home" label="Home" component={NavLink} to={"/"} />
+        <Tab
+          value="Home"
+          label="Home"
+          component={NavLink}
+          to={"/"}
+          css={css`
+            @media screen and (max-width: 550px) {
+              font-size: 12px;
+            }
+          `}
+        />
         <Tab
           value="Best Times"
           label="Best Times"
           component={NavLink}
           to={"/best-times"}
+          css={css`
+            @media screen and (max-width: 550px) {
+              font-size: 12px;
+            }
+          `}
         />
       </Tabs>
       <h1
@@ -49,6 +64,9 @@ export default function ColorTabs() {
           text-align: right;
           @media screen and (max-width: 550px) {
             font-size: 22px;
+          }
+          @media screen and (max-width: 400px) {
+            font-size: 16px;
           }
         `}
       >

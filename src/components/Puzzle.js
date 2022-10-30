@@ -273,6 +273,10 @@ const Puzzle = (props) => {
         width: 100%;
         height: 100%;
         position: relative;
+        @media screen and (max-width: 500px) {
+          justify-content: flex-start;
+          gap: 20px;
+        }
       `}
     >
       <div
@@ -281,12 +285,24 @@ const Puzzle = (props) => {
           flex-direction: column;
           align-items: center;
           gap: 15px;
+          @media screen and (max-width: 500px) {
+            gap: 25px;
+          }
         `}
       >
         <Stopwatch gameOver={gameOver} setPuzzleTime={setPuzzleTime} />
         <p
           css={css`
             text-align: center;
+            @media screen and (max-width: 500px) {
+              font-size: 14px;
+            }
+            @media screen and (max-width: 400px) {
+              font-size: 12px;
+            }
+            @media screen and (max-width: 360px) {
+              font-size: 11px;
+            }
           `}
         >
           Can you find all of characters in the puzzle below?
@@ -315,6 +331,15 @@ const Puzzle = (props) => {
                   id={item.name + item.name}
                   css={css`
                     margin-right: 3px;
+                    @media screen and (max-width: 500px) {
+                      font-size: 14px;
+                    }
+                    @media screen and (max-width: 400px) {
+                      font-size: 12px;
+                    }
+                    @media screen and (max-width: 360px) {
+                      font-size: 11px;
+                    }
                   `}
                 >
                   {item.name}
@@ -325,6 +350,15 @@ const Puzzle = (props) => {
                   src={item.img}
                   css={css`
                     height: 30px;
+                    @media screen and (max-width: 500px) {
+                      height: 22px;
+                    }
+                    @media screen and (max-width: 400px) {
+                      height: 17px;
+                    }
+                    @media screen and (max-width: 360px) {
+                      height: 15px;
+                    }
                   `}
                 ></img>
               </div>
@@ -335,7 +369,7 @@ const Puzzle = (props) => {
       <ImageZoom
         img={thisPuzzle.img}
         width={"100%"}
-        height={"100%"}
+        // height={"100%"}
         handleClickOpen={handleClickOpen}
         setCoordXY={setCoordXY}
       />

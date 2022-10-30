@@ -22,14 +22,33 @@ export default function TimeTabs(props) {
     <Box sx={{ width: "100%", typography: "body1" }}>
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleChange} aria-label="best-times-level-tabs">
+          <TabList
+            onChange={handleChange}
+            aria-label="best-times-level-tabs"
+            css={css`
+              @media screen and (max-width: 500px) {
+                width: 380px;
+              }
+              @media screen and (max-width: 400px) {
+                width: 330px;
+              }
+            `}
+          >
             <Tab
               label="Level 1"
               value="1"
               component={Link}
               to={"/best-times/level-1"}
+              style={{ minWidth: 5 }}
               css={css`
                 font-size: 12px;
+                @media screen and (max-width: 500px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 400px) {
+                  font-size: 8px;
+                  width: 55px;
+                }
               `}
             />
             <Tab
@@ -37,8 +56,16 @@ export default function TimeTabs(props) {
               value="2"
               component={Link}
               to={"/best-times/level-2"}
+              style={{ minWidth: 5 }}
               css={css`
                 font-size: 12px;
+                @media screen and (max-width: 500px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 400px) {
+                  font-size: 8px;
+                  width: 55px;
+                }
               `}
             />
             <Tab
@@ -46,8 +73,16 @@ export default function TimeTabs(props) {
               value="3"
               component={Link}
               to={"/best-times/level-3"}
+              style={{ minWidth: 5 }}
               css={css`
                 font-size: 12px;
+                @media screen and (max-width: 500px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 400px) {
+                  font-size: 8px;
+                  width: 55px;
+                }
               `}
             />
             <Tab
@@ -55,8 +90,16 @@ export default function TimeTabs(props) {
               value="4"
               component={Link}
               to={"/best-times/level-4"}
+              style={{ minWidth: 5 }}
               css={css`
                 font-size: 12px;
+                @media screen and (max-width: 500px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 400px) {
+                  font-size: 8px;
+                  width: 55px;
+                }
               `}
             />
             <Tab
@@ -64,8 +107,16 @@ export default function TimeTabs(props) {
               value="5"
               component={Link}
               to={"/best-times/level-5"}
+              style={{ minWidth: 5 }}
               css={css`
                 font-size: 12px;
+                @media screen and (max-width: 500px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 400px) {
+                  font-size: 8px;
+                  width: 55px;
+                }
               `}
             />
             <Tab
@@ -73,8 +124,16 @@ export default function TimeTabs(props) {
               value="6"
               component={Link}
               to={"/best-times/level-6"}
+              style={{ minWidth: 5 }}
               css={css`
                 font-size: 12px;
+                @media screen and (max-width: 500px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 400px) {
+                  font-size: 8px;
+                  width: 55px;
+                }
               `}
             />
           </TabList>

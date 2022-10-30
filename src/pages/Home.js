@@ -24,6 +24,9 @@ const Home = (props) => {
           grid-area: 1 / 1 / 2 / -1;
           place-self: center;
           font-size: 18px;
+          @media screen and (max-width: 400px) {
+            font-size: 16px;
+          }
         `}
       >
         Choose a puzzle to get started!
