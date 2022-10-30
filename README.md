@@ -14,7 +14,7 @@ This app is based on the classic children's puzzle book game [Where's Waldo](htt
 ## Key Features
 
 - 6 unique levels, each with 4 characters to find
-  ![puzzleLevels](./src/assets/puzzle.gif)
+  ![puzzleLevels](./src/assets/6puzzles.gif)
 - Writes user info (name and time) to Cloud Firestore after each level is complete
   ![puzzleComplete](./src/assets/puzzleComplete.gif)
 - Best Times scoreboards for each level display real-time user data
@@ -24,7 +24,7 @@ This app is based on the classic children's puzzle book game [Where's Waldo](htt
 - A user-friendly DOM puzzle magnifying glass
   ![magnifier](./src/assets/magnifier.gif)
 - Responsive / mobile-friendly design
-  ![responsive](./src/assets/responsive.gif)
+  ![responsive](./src/assets/mobile1.gif)
 - Real-time character hit/miss feedback
   ![feedback](./src/assets/feedback.gif)
 - Explicit user names filtered out with the help of [bad-words](https://www.npmjs.com/package/bad-words)
