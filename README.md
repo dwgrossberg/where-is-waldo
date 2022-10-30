@@ -1,6 +1,6 @@
 # Where's Waldo?
 
-See a project demo [here](https://dwgrossberg.github.io/where-is-waldo/) :point_left:
+See a [project demo here](https://dwgrossberg.github.io/where-is-waldo/) :point_left:
 
 This app is based on the classic children's puzzle book game [Where's Waldo](https://en.wikipedia.org/wiki/Where%27s_Wally%3F).
 
